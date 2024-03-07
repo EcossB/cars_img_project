@@ -1,22 +1,22 @@
- <div class="imgContainer">
+ <div class="imgContainer" (click)="checkPermissions()">
 
-  <div class="blueprintCaRight" (click)="openModal(template)">
+  <div class="blueprintCaRight" (click)="openModal(carRightT)">
     <img src="assets\bluePrintCar\rightPart.png" width="auto" >
   </div>
 
   <div class="imgFronBackContainer">
 
-    <div class="blueprintCarBack" (click)="openModal(template)">
+    <div class="blueprintCarBack" (click)="openModal(carBack)">
       <img src="assets\bluePrintCar\BackPart.png" width="100%" >
     </div>
 
-    <div class="blueprintCarFront" (click)="openModal(template)">
+    <div class="blueprintCarFront" (click)="openModal(carFront)">
       <img src="assets\bluePrintCar\frontPart.png" width="100%" >
     </div>
 
   </div>
 
-  <div class="blueprintCarLeft" (click)="openModal(template)">
+  <div class="blueprintCarLeft" (click)="openModal(carLeft)">
     <img src="assets\bluePrintCar\leftPart.png" width="auto">
   </div>
 
@@ -25,7 +25,7 @@
 
 <!-- <button type="button" class="btn btn-primary" (click)="openModal(template)">Create template modal</button> -->
 
-<ng-template #template>
+<ng-template #carRightT>
   <div class="modal-header">
     <h4 class="modal-title pull-left">Modal Right Part</h4>
     <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="modalRef?.hide()">
@@ -33,7 +33,69 @@
     </button>
   </div>
   <div class="modal-body">
-    This is a modal.
+    <!-- todo: cam image shown here in the body -->
+    <webcam
+    [width]="450"
+    [height]="450"
+    [trigger]="$carRight"
+    (imageCapture)="snapshot($event)"
+    [imageQuality]="1"
+
+    ></webcam>
+  </div>
+  <div class="modal-footer">
+    <button class="btn btn-primary" (click)="captureImage(carRight)"> capture image </button>
+  </div>
+</ng-template>
+
+
+<ng-template #carLeft>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Modal Right Part</h4>
+    <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="modalRef?.hide()">
+      <span aria-hidden="true" class="visually-hidden">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <!-- todo: cam image shown here in the body -->
+    <webcam [width]="450"  [height]="450"></webcam>
+  </div>
+  <div class="modal-footer">
+    <button class="btn btn-primary"> capture image </button>
+  </div>
+</ng-template>
+
+
+<ng-template #carFront>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Modal Right Part</h4>
+    <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="modalRef?.hide()">
+      <span aria-hidden="true" class="visually-hidden">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <!-- todo: cam image shown here in the body -->
+    <webcam [width]="450"  [height]="450"></webcam>
+  </div>
+  <div class="modal-footer">
+    <button class="btn btn-primary"> capture image </button>
+  </div>
+</ng-template>
+
+
+<ng-template #carBack>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Modal Right Part</h4>
+    <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="modalRef?.hide()">
+      <span aria-hidden="true" class="visually-hidden">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <!-- todo: cam image shown here in the body -->
+    <webcam [width]="450"  [height]="450"></webcam>
+  </div>
+  <div class="modal-footer">
+    <button class="btn btn-primary"> capture image </button>
   </div>
 </ng-template>
 
