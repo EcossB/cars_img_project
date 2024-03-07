@@ -1,0 +1,42 @@
+ <div class="imgContainer">
+
+  <div class="blueprintCaRight" (click)="openModal(template)">
+    <img src="assets\bluePrintCar\rightPart.png" width="auto" >
+  </div>
+
+  <div class="imgFronBackContainer">
+
+    <div class="blueprintCarBack" (click)="openModal(template)">
+      <img src="assets\bluePrintCar\BackPart.png" width="100%" >
+    </div>
+
+    <div class="blueprintCarFront" (click)="openModal(template)">
+      <img src="assets\bluePrintCar\frontPart.png" width="100%" >
+    </div>
+
+  </div>
+
+  <div class="blueprintCarLeft" (click)="openModal(template)">
+    <img src="assets\bluePrintCar\leftPart.png" width="auto">
+  </div>
+
+</div>
+
+
+<!-- <button type="button" class="btn btn-primary" (click)="openModal(template)">Create template modal</button> -->
+
+<ng-template #template>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Modal Right Part</h4>
+    <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="modalRef?.hide()">
+      <span aria-hidden="true" class="visually-hidden">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    This is a modal.
+  </div>
+</ng-template>
+
+
+
+

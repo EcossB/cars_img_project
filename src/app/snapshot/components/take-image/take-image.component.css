@@ -1,0 +1,65 @@
+/* .imgContainer{
+  width: 55vh;
+  padding: 0.5rem;
+  background-color: black;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.blueprintCarFront{
+  flex:0.5;
+}
+
+
+
+.blueprintCarBack{
+  flex: 1;
+}
+
+.blueprintCarRight,
+.blueprintCarLeft{
+  flex: 1 100%;
+}
+ */
+
+.imgContainer {
+  width: 35%;
+  display: grid;
+  grid-template-columns: 0.5fr;
+  grid-template-rows: 0.6fr 1fr 0.7fr;
+  gap: 0px 0px;
+  grid-template-areas:
+    "blueprintCarRight "
+    "imgFronBackContainer "
+    "blueprintCarLeft ";
+  justify-content: stretch;
+  align-content: stretch;
+  justify-items: stretch;
+  align-items: stretch;
+}
+
+.blueprintCarRight { grid-area: blueprintCarRight; }
+
+.blueprintCarLeft { grid-area: blueprintCarLeft; }
+
+.imgFronBackContainer{
+
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr;
+  gap: 0px 0px;
+  grid-template-areas:
+    "blueprintCarFront blueprintCarBack";
+  grid-area: imgFronBackContainer;
+
+
+}
+
+.blueprintCarBack{
+  grid-area: blueprintCarBack;
+}
+
+.blueprintCarFront{
+  grid-area: blueprintCarFront;
+}
+
