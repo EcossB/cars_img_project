@@ -5,6 +5,7 @@ import { SnapshotModule } from './snapshot/snapshot.module';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { WebcamModule } from 'ngx-webcam';
 
 
 @NgModule({
@@ -14,7 +15,8 @@ import { AppComponent } from './app.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    SnapshotModule
+    SnapshotModule,
+    WebcamModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -6,6 +6,7 @@ import { TakeImageComponent } from './components/take-image/take-image.component
 
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import {ModalModule} from 'ngx-bootstrap/modal';
+import { WebcamModule } from 'ngx-webcam';
 
 
 
@@ -17,7 +18,8 @@ import {ModalModule} from 'ngx-bootstrap/modal';
   imports: [
     CommonModule,
     TooltipModule.forRoot(),
-    ModalModule.forRoot()
+    ModalModule.forRoot(),
+    WebcamModule
   ]
 })
 export class SnapshotModule { }
