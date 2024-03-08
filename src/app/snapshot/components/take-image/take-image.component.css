@@ -23,7 +23,7 @@
  */
 
 .imgContainer {
-  width: 35%;
+  width: 27%;
   display: grid;
   grid-template-columns: 0.5fr;
   grid-template-rows: 0.6fr 1fr 0.7fr;
@@ -36,11 +36,19 @@
   align-content: stretch;
   justify-items: stretch;
   align-items: stretch;
+  border-radius: 10px;
+  background-color: #333;
 }
 
-.blueprintCarRight { grid-area: blueprintCarRight; }
+.blueprintCarRight {
+  grid-area: blueprintCarRight;
 
-.blueprintCarLeft { grid-area: blueprintCarLeft; }
+}
+
+.blueprintCarLeft {
+  grid-area: blueprintCarLeft;
+
+}
 
 .imgFronBackContainer{
 
@@ -61,5 +69,6 @@
 
 .blueprintCarFront{
   grid-area: blueprintCarFront;
+  background-image: url('/src/assets/bluePrintCar/frontPart.png');
 }
 
