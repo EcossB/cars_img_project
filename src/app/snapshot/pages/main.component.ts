@@ -3,7 +3,8 @@ import { imagePreview } from '../interfaces/previewImage.interface';
 
 @Component({
   selector: 'main-page-snapshot',
-  templateUrl: 'main.component.html'
+  templateUrl: 'main.component.html',
+  styleUrl: 'main.component.css'
 })
 
 export class SnapshotComponent  {
