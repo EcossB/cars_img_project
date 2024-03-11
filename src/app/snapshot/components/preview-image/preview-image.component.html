@@ -1,7 +1,21 @@
 
 <div class="containerImagePreview mx-3 my-3">
-  <div class="rightPreview"><img [src]="carPhotos.carRightPreview" width="450" height="380"></div>
-  <div class="frontPreview"><img [src]="carPhotos.carFrontPreview" width="450" height="380"></div>
-  <div class="backPreview"><img [src]="carPhotos.carBackPreview" width="450" height="380"></div>
-  <div class="leftPreview"><img [src]="carPhotos.carleftPreview" width="450" height="380"></div>
+
+  <div class="rightPreview stacked">
+    <img [src]="carPhotos.carRightPreview" class="card_img">
+  </div>
+
+  <div class="frontPreview stacked">
+    <img [src]="carPhotos.carFrontPreview" class="card_img">
+  </div>
+
+  <div class="backPreview stacked">
+    <img [src]="carPhotos.carBackPreview" class="card_img">
+  </div>
+
+  <div class="leftPreview stacked">
+    <img [src]="carPhotos.carleftPreview"  class="card_img">
+  </div>
+
+  
 </div>
