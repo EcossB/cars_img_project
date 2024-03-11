@@ -1,4 +1,25 @@
+<h1>Cars Img Prototype </h1>
 
-<take-image (onNewPhoto)="onNewPhoto($event)"></take-image>
+<hr>
 
-<preview-image [carPhotos]="imagePrevieCars"></preview-image>
+<div class="MainContainer">
+
+  <div class="carDataContainer">
+      Donde ira la data del carro.
+  </div>
+
+  <div class="takeImageContainer">
+    <take-image (onNewPhoto)="onNewPhoto($event)"></take-image>
+  </div>
+
+  <div class="previewContainer">
+    <preview-image [carPhotos]="imagePrevieCars"></preview-image>
+  </div>
+
+  <div class="saveContainer">
+    Button Save ira aqui.
+  </div>
+
+</div>
+
+
