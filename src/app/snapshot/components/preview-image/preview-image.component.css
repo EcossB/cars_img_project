@@ -1,33 +1,36 @@
+
 .containerImagePreview {
-  background-color: #999;
+  background-color: #c8c8c8;
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  grid-template-rows: 1fr;
-  gap: 0px 0px;
-  grid-auto-flow: row;
-  justify-items: stretch;
-  grid-template-areas:
-    "a b c d";
-  height: 40vh;
-  border-radius: 10px;
-  justify-content: space-evenly;
-  flex-wrap: wrap;
+  gap: .125rem;
+  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+}
+
+.stacked {
+  display: grid;
+}
+
+.stacked > * {
+  grid-column: 1 / 2;
+  grid-row: 1 / 2;
+}
+
+.card_img{
+  width: 100%;
+  height: 100%;
+  aspect-ratio: 1 / 1.1;
+  object-fit: cover;
 }
 
 .rightPreview {
-  width: 25%;
-
-  grid-area: a; }
+  border: 3px solid hotpink; }
 
 .frontPreview {
-  width: 25%;
-   grid-area: b; }
+   border: 3px solid hotpink; }
 
 .backPreview {
-  width: 25%;
-  grid-area: c; }
+  border: 3px solid hotpink; }
 
 .leftPreview {
-  width: 25%;
-  grid-area: d; }
+  border: 3px solid hotpink; }
 
