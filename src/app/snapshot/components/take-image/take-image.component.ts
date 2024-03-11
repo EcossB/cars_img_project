@@ -1,4 +1,4 @@
-import { Component, TemplateRef } from '@angular/core';
+import { Component, EventEmitter, Output, TemplateRef } from '@angular/core';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { WebcamImage } from 'ngx-webcam';
 import { Observable, Subject } from 'rxjs';
@@ -29,6 +29,9 @@ export class TakeImageComponent {
     carFrontPreview: '',
     carBackPreview: ''
   };
+
+  @Output()
+  public onNewPhoto: EventEmitter<imagePreview> = new EventEmitter;
 
 
   /** ------ Open modal Boot Strap -------- */
@@ -66,7 +69,11 @@ export class TakeImageComponent {
   }
 
   captureImageRight(): void {
+
     this.carRight.next();
+
+    this.onNewPhoto.emit(this.imageCarrete);
+
   }
 
   /* --------------------- Trigger, snapshotEvent and capture image for left side of vehicle--------------------------*/
@@ -82,6 +89,8 @@ export class TakeImageComponent {
 
   captureImageLeft( ): void {
     this.carleft.next();
+    this.onNewPhoto.emit(this.imageCarrete);
+
   }
 
 
@@ -98,6 +107,8 @@ export class TakeImageComponent {
 
   captureImageFront( ): void {
     this.carFront.next();
+    this.onNewPhoto.emit(this.imageCarrete);
+
   }
 
     /* ---------------------Trigger, snapshotEvent and capture image for back side of vehicle--------------------------*/
@@ -113,6 +124,8 @@ export class TakeImageComponent {
 
   captureImageBack( ): void {
     this.carBack.next();
+    this.onNewPhoto.emit(this.imageCarrete);
+
   }
 
 
