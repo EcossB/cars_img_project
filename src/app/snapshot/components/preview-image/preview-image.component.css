@@ -4,6 +4,7 @@
   display: grid;
   gap: .125rem;
   grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+  border-radius: 10px;
 }
 
 .stacked {
@@ -20,17 +21,7 @@
   height: 100%;
   aspect-ratio: 1 / 1.1;
   object-fit: cover;
+  border-radius: 10px;
 }
 
-.rightPreview {
-  border: 3px solid hotpink; }
-
-.frontPreview {
-   border: 3px solid hotpink; }
-
-.backPreview {
-  border: 3px solid hotpink; }
-
-.leftPreview {
-  border: 3px solid hotpink; }
 
