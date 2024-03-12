@@ -1,59 +1,29 @@
 .mainSection {
   display: grid;
-  grid-auto-columns: 1fr;
-  grid-template-columns: 1fr;
-  /* grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr)); */
-  /* grid-template-rows: 1fr 0.5fr 0.2fr; */
-  gap: 0.5rem;
-  grid-template-areas:
-    "carDataContainer takeImageContainer"
-    "previewContainer previewContainer"
-    ". saveContainer";
-  justify-content: space-evenly;
-  justify-items: stretch;
+  gap: 0rem;
+  grid-auto-flow: dense;
+  grid-auto-rows: 50%;
+  grid-template-columns: repeat(auto-fit, minmax(22rem, 1fr));
 }
 
-.previewContainer {
-  grid-area: previewContainer;
+.takeImageContainer{
+  margin-bottom: 2rem;
+  margin-right: 2rem;
+  margin-left: 2rem;
 }
 
-.carDataContainer {
-  grid-area: carDataContainer;
-  width: 90%;
-  margin: 3rem;
-  background-color: #333;
+.previewContainer{
+  margin: 1rem;
 }
 
+.carDataContainer{
+  margin: 0.5rem;
+}
 
-.takeImageContainer {
-  grid-area: takeImageContainer;
+.saveContainer{
   margin: 3rem;
 }
 
-.saveContainer {
-  grid-area: saveContainer;
+.saveContainer button {
+  width: 100%;
 }
-
-@media only screen and (max-width: 550px) {
-  .mainSection {
-    grid-template-columns: repeat(1, 1fr);
-    grid-template-areas:
-      "carDataContainer"
-      "takeImageContainer"
-      "previewContainer"
-      "saveContainer";
-  }
-
-  .takeImageContainer {
-    margin-right: 2.5rem;
-  }
-
-  .carDataContainer {
-    width: auto;
-    height: 50%;
-    margin: 3rem;
-    background-color: #333;
-  }
-
-}
-
