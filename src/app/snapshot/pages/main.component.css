@@ -36,7 +36,7 @@
 
 @media only screen and (max-width: 550px) {
   .mainSection {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(1, 1fr);
     grid-template-areas:
       "carDataContainer"
       "takeImageContainer"
@@ -45,7 +45,7 @@
   }
 
   .takeImageContainer {
-    margin-right: 2rem;
+    margin-right: 2.5rem;
   }
 
   .carDataContainer {
@@ -57,36 +57,3 @@
 
 }
 
-
-
-
-
-/* .mainSection{
-  display: grid;
-  grid-auto-columns: 1fr;
-  grid-template-columns: 1fr;
-  grid-template-rows: 1fr 0.5fr 0.2fr;
-  gap: .125rem;
-  grid-template-areas:
-    "carDataContainer takeImageContainer"
-    "previewContainer previewContainer"
-    ". saveContainer";
-  justify-content: space-evenly;
-  justify-items: stretch;
-} */
-
-/* .mainSection{
-  max-width: 1200px;
-  margin: 0 auto;
-  display: grid;
-  gap: 1rem;
-  grid-template-columns: repeat(auto-fit, minmax(25rem, 2fr));
-}
-
-.takeImageContainer {
-  
-}
-
-.previewContainer {
-  
-} */
