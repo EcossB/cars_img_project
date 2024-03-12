@@ -1,19 +1,11 @@
-
-.containerImagePreview {
-  background-color: #c8c8c8;
+.containerImagePreview{
+  margin-top: 5rem;
   display: grid;
-  gap: .125rem;
-  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
-  border-radius: 10px;
-}
-
-.stacked {
-  display: grid;
-}
-
-.stacked > * {
-  grid-column: 1 / 2;
-  grid-row: 1 / 2;
+  gap: 0.1rem;
+  grid-auto-flow: dense;
+  grid-auto-rows: 22rem;
+  grid-template-columns: repeat(auto-fill, minmax(17rem, 1fr));
+  background-color: #ccc;
 }
 
 .card_img{
@@ -23,5 +15,3 @@
   object-fit: cover;
   border-radius: 10px;
 }
-
-
