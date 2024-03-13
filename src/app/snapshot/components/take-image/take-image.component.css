@@ -17,8 +17,18 @@
   /* object-fit: cover; */
 }
 
+.checkImages{
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+  display: flex;
+  justify-content: center;
+}
 
-
+.check{
+  width: 20px;
+  height: 20px;
+  margin-right: 1rem;
+}
 
 
 
