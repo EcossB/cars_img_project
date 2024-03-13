@@ -1,7 +1,7 @@
  <div class="imgContainer" (click)="checkPermissions()">
 
   <div class="blueprintCaRight twoColumns" (click)="openModal(carRightT)">
-    <img src="assets\bluePrintCar\rightPart.png" class="car_img" >
+    <img src="assets\bluePrintCar\rightPart.png" class="car_img overlay" > 
   </div>
 
   <div class="blueprintCarBack" (click)="openModal(carBackT)">
@@ -18,6 +18,13 @@
 
 </div>
 
+<!-- ------------ adding checkbuttons, when an image is capture these will be [checked] -->
+<div class="checkImages">
+  <input type="checkbox" class="check"  disabled="disabled" [checked]=inputsChecked.check1>
+  <input type="checkbox" class="check"  disabled="disabled" [checked]=inputsChecked.check2>
+  <input type="checkbox" class="check"  disabled="disabled" [checked]=inputsChecked.check3>
+  <input type="checkbox" class="check"  disabled="disabled" [checked]=inputsChecked.check4>
+</div>
 
 
 <!-- -------------------- Ng template for car right modal. -------------------------------- -->
