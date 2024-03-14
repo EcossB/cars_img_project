@@ -7,6 +7,8 @@ import { LoginModule } from './loginmodule/loginmodule.module';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { WebcamModule } from 'ngx-webcam';
+import { NavbarComponent } from './navbar/components/navbar/navbar.component';
+import { NavbarModule } from './navbar/navbar.module';
 
 
 @NgModule({
@@ -18,7 +20,8 @@ import { WebcamModule } from 'ngx-webcam';
     AppRoutingModule,
     SnapshotModule,
     WebcamModule,
-    LoginModule
+    LoginModule,
+    NavbarModule
   ],
   providers: [],
   bootstrap: [AppComponent]

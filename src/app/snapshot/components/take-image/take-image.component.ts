@@ -3,6 +3,7 @@ import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { WebcamImage } from 'ngx-webcam';
 import { Observable, Subject } from 'rxjs';
 import { imagePreview } from '../../interfaces/previewImage.interface';
+import { CheckGroup } from '../../interfaces/checkgroup.interface';
 
 
 @Component({
@@ -29,6 +30,13 @@ export class TakeImageComponent {
     carFrontPreview: '',
     carBackPreview: ''
   };
+
+  inputsChecked: CheckGroup ={
+    check1: false,
+    check2: false,
+    check3: false,
+    check4: false
+  }
 
   @Output()
   public onNewPhoto: EventEmitter<imagePreview> = new EventEmitter;
@@ -71,9 +79,8 @@ export class TakeImageComponent {
   captureImageRight(): void {
 
     this.carRight.next();
-
     this.onNewPhoto.emit(this.imageCarrete);
-
+    this.inputsChecked.check1 = true;
   }
 
   /* --------------------- Trigger, snapshotEvent and capture image for left side of vehicle--------------------------*/
@@ -90,6 +97,8 @@ export class TakeImageComponent {
   captureImageLeft( ): void {
     this.carleft.next();
     this.onNewPhoto.emit(this.imageCarrete);
+    this.inputsChecked.check4 = true;
+
 
   }
 
@@ -108,6 +117,8 @@ export class TakeImageComponent {
   captureImageFront( ): void {
     this.carFront.next();
     this.onNewPhoto.emit(this.imageCarrete);
+    this.inputsChecked.check2 = true;
+
 
   }
 
@@ -125,7 +136,7 @@ export class TakeImageComponent {
   captureImageBack( ): void {
     this.carBack.next();
     this.onNewPhoto.emit(this.imageCarrete);
-
+    this.inputsChecked.check3 = true;
   }
 
 
