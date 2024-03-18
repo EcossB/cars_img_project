@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+
 
 import { SnapshotComponent } from './pages/main.component';
 import { TakeImageComponent } from './components/take-image/take-image.component';
@@ -26,7 +28,8 @@ import { HttpClientModule } from '@angular/common/http';
     TooltipModule.forRoot(),
     ModalModule.forRoot(),
     WebcamModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers:[ApiCarsImgService]
 })

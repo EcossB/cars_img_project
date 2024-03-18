@@ -9,6 +9,7 @@ import { AppComponent } from './app.component';
 import { WebcamModule } from 'ngx-webcam';
 import { NavbarComponent } from './navbar/components/navbar/navbar.component';
 import { NavbarModule } from './navbar/navbar.module';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { NavbarModule } from './navbar/navbar.module';
     SnapshotModule,
     WebcamModule,
     LoginModule,
-    NavbarModule
+    NavbarModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
