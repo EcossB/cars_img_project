@@ -3,6 +3,7 @@ import { imagePreview } from '../interfaces/previewImage.interface';
 import { Vehicle } from '../interfaces/vehicle.interface';
 import { ApiCarsImgService } from '../services/api-cars-img.service';
 import { SaveVehiclePayload } from '../interfaces/DataImgPayload.interface';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'main-page-snapshot',
@@ -75,17 +76,25 @@ export class SnapshotComponent  {
 
 
 saveImages():void{
-  console.log(this.saveimagePayload)
+ 
   this.apiService.SaveImagesVehicle(this.saveimagePayload).
   subscribe({
     next:(data: any) => {
-      console.log(data);
+      alert(data.mensaje);
+      this.reloadPage();
     },
-    error:(error: any) => {
-      console.log(error);
+    error:(error: HttpErrorResponse) => {
+      if(error.status == 400){
+        alert("Debes de buscar el vehiculo y tambien tomar las 4 fotografias.")
+      }
+      console.log(error)
     }
   })
 }
+
+reloadPage():void {
+  window.location.reload();
+  }
 
 
 }
