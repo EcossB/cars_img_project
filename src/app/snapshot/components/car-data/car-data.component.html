@@ -19,7 +19,8 @@
                   class="form-control"
                   placeholder="Search..."
                   #searchBox
-                  (input)="search(searchBox.value)"
+                  [value]="selectedChasis"
+                  (input)="search(searchBox.value);"
                 />
                 <!-- Progres -->
                 <div class="loader" *ngIf="loading">
@@ -32,7 +33,7 @@
                   class="list-group-item list-group-item-action"
                   *ngFor="let chasis of chasis$ | async"
                 >
-                  <div class="d-flex p-2 bd-highlight">
+                  <div class="d-flex p-2 bd-highlight"  (click)="onSelected($event); getVehicleByChasis(selectedChasis)">
                     <p class="ms-3">{{ chasis.chasis }}</p>
                   </div>
                 </div>
@@ -40,12 +41,9 @@
             </form>
           </div>
 
-
-
-      
     </div>
     <div class="modal-footer">
-      <button class="btn btn-primary btn-lg">Capturar Imagenes</button>
+      <button class="btn btn-primary btn-lg" (click)="getVehicleByChasis(selectedChasis); modalRef?.hide()" >Obtener Datos</button>
     </div>
   </ng-template>
 
@@ -96,28 +94,28 @@
             <!-- TODO: llamada de la api para desplegar los datos -->
             <tr>
                 <td>
-                    ejemplo
+                    {{vehicleObtained.compania}}
                 </td>
                 <td>
-                    ejemplo
+                    {{vehicleObtained.sucursal}}
                 </td>
                 <td>
-                    ejemplo
+                    {{vehicleObtained.orden_Numero}}
                 </td>
                 <td>
-                    ejemplo
+                    {{vehicleObtained.chasis}}
                 </td>
                 <td>
-                    ejemplo
+                    {{vehicleObtained.marca}}
                 </td>
                 <td>
-                    ejemplo
+                    {{vehicleObtained.modelo}}
                 </td>
                 <td>
-                    ejemplo
+                    {{vehicleObtained.ano}}
                 </td>
                 <td>
-                    ejemplo
+                    {{vehicleObtained.placa}}
                 </td>
             </tr>
         </tbody>
