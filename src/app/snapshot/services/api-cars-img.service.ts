@@ -14,7 +14,7 @@ export class ApiCarsImgService {
   private urlApiCarsImg: string = 'https://localhost:7016/';
 
   /*---- these methods are for retrieve the data of the Endpoint {vehicle} in the Api. ----- */
-  /*----- the data that is coming its for the component car-data. -----*/
+  /*----- the data that is coming, its for the component car-data. -----*/
   
 
 
@@ -23,7 +23,7 @@ export class ApiCarsImgService {
   }
 
   getVehicleByChasis(chasis: string): Observable<Object>{
-    return this.http.get(`${this.urlApiCarsImg}api/Vehicle${chasis}`);
+    return this.http.get(`${this.urlApiCarsImg}api/Vehicle/${chasis}`);
   }
 
   getAllChasis(): Observable<chasis[]> {
