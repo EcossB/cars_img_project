@@ -1,6 +1,6 @@
 <section class="mainSection">
   <div class="carDataContainer">
-    <car-data></car-data>
+    <car-data (onNewDataTable)="onNewDataTable($event)"></car-data>
   </div>
 
   <div class="takeImageContainer">
@@ -13,7 +13,7 @@
 </div>
 
 <div class="saveContainer">
-  <button class="btn btn-primary">Save</button>
+  <button class="btn btn-primary" (click)="saveImages()">Save</button>
 </div>
 
 
