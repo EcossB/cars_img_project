@@ -3,6 +3,8 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { ImgVehicle } from '../interfaces/Imgvehicle.interface';
 import { chasis } from '../interfaces/chasis.interface';
+import { FormGroup } from '@angular/forms';
+import { LoginResponse } from '../interfaces/login.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -51,6 +53,10 @@ export class ApiCarsImgService {
   }
 
   /* ------------------------------------------------------------------ */
+  /*The next methods are for login and logout endpoints. */
 
+  LoginUser(form: FormGroup){
+    return this.http.post<{user: LoginResponse}>(`${this.urlApiCarsImg}api/Auth`, form.getRawValue());
+  }
 
 }
