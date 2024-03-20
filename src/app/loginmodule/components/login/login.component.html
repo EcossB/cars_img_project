@@ -4,7 +4,9 @@
 
     <div class="loginContainer">
 
-        <form class="text-center text-sm p-5 loginForm">
+        <form class="text-center text-sm p-5 loginForm" [formGroup]="form" (ngSubmit)="LogIn()">
+
+            <img src="assets\bluePrintCar\cameraLogo.png" [width]="150" >
 
             <p class="h4 mb-4">Iniciar Sesion</p>
 
@@ -13,7 +15,7 @@
             <input type="password" formControlName="password" class="form-control mb-3" placeholder="Contrasena">
 
             <div class="d-grid gap-3 col-6 mx-auto btnlogin">
-                <button class="btn btn-secondary" type="submit">Ingresar</button>
+                <button class="btn btn-secondary" type="submit" >Ingresar</button>
             </div>
             
         </form>
