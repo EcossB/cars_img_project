@@ -14,6 +14,8 @@ import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import {ModalModule} from 'ngx-bootstrap/modal';
 import { WebcamModule } from 'ngx-webcam';
 import { HttpClientModule } from '@angular/common/http';
+import { AuthService } from '../loginmodule/services/auth.service';
+import { AuthGuardService } from '../loginmodule/services/auth-guard.service';
 
 
 @NgModule({
@@ -30,6 +32,6 @@ import { HttpClientModule } from '@angular/common/http';
     FormsModule,
     NavbarModule
   ],
-  providers:[ApiCarsImgService]
+  providers:[ApiCarsImgService, AuthService, AuthGuardService]
 })
 export class SnapshotModule { }
