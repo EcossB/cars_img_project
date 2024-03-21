@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { ImgVehicle } from '../interfaces/Imgvehicle.interface';
 import { chasis } from '../interfaces/chasis.interface';
 import { FormGroup } from '@angular/forms';
 import { LoginResponse } from '../interfaces/login.interface';
+import { message } from '../../loginmodule/interface/message.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -19,21 +20,28 @@ export class ApiCarsImgService {
   /*----- the data that is coming, its for the component car-data. -----*/
   
 
+  header_object = new HttpHeaders().set("Authorization", "bearer " + localStorage.getItem('Token'));
+
+  httpOptions = {
+    headers: this.header_object
+  };
+
+  token: string | null = localStorage.getItem('Token');
 
   getAllVehiclesData(): Observable<Object> {
-    return this.http.get(`${this.urlApiCarsImg}api/Vehicle`);
+    return this.http.get(`${this.urlApiCarsImg}api/Vehicle?user=${this.token}`, this.httpOptions);
   }
 
   getVehicleByChasis(chasis: string): Observable<Object>{
-    return this.http.get(`${this.urlApiCarsImg}api/Vehicle/${chasis}`);
+    return this.http.get(`${this.urlApiCarsImg}api/Vehicle/${chasis}?user=${this.token}`, this.httpOptions);
   }
 
   getAllChasis(): Observable<chasis[]> {
-    return this.http.get<chasis[]>(`${this.urlApiCarsImg}api/Vehicle/allChasis`);
+    return this.http.get<chasis[]>(`${this.urlApiCarsImg}api/Vehicle/allChasis?user=${this.token}`, this.httpOptions);
   }
 
   getChasis(chasis: string): Observable<chasis[]>{
-    return this.http.get<chasis[]>(`${this.urlApiCarsImg}api/Vehicle/single/${chasis}`);
+    return this.http.get<chasis[]>(`${this.urlApiCarsImg}api/Vehicle/single/${chasis}?user=${this.token}`, this.httpOptions);
   }
 
   /*------------------------------------------------------------------- */
@@ -41,15 +49,15 @@ export class ApiCarsImgService {
   /*Methods for endpoint ImgVehicle, these methods save and retrieve data for the image vehicles. */
 
   getAllImagesVehicle(): Observable<Object> {
-    return this.http.get(`${this.urlApiCarsImg}api/ImgVehicle`);
+    return this.http.get(`${this.urlApiCarsImg}api/ImgVehicle?user=${this.token}`, this.httpOptions);
   }
 
   getImagesVehicleByNumOrder(num_order: number): Observable<Object> {
-    return this.http.get(`${this.urlApiCarsImg}api/ImgVehicle/${num_order}`);
+    return this.http.get(`${this.urlApiCarsImg}api/ImgVehicle/${num_order}?user=${this.token}`, this.httpOptions);
   }
 
   SaveImagesVehicle(payload: ImgVehicle) {
-    return this.http.post(`${this.urlApiCarsImg}api/ImgVehicle`, payload);
+    return this.http.post(`${this.urlApiCarsImg}api/ImgVehicle?user=${this.token}`, payload, this.httpOptions);
   }
 
   /* ------------------------------------------------------------------ */
@@ -57,6 +65,10 @@ export class ApiCarsImgService {
 
   LoginUser(form: FormGroup){
     return this.http.post<{user: LoginResponse}>(`${this.urlApiCarsImg}api/Auth`, form.getRawValue());
+  }
+
+  LogOutUser(form: any){
+    return this.http.post<{mesage: message}>(`${this.urlApiCarsImg}logout`, form);
   }
 
 }
