@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { imagePreview } from '../interfaces/previewImage.interface';
 import { Vehicle } from '../interfaces/vehicle.interface';
 import { ApiCarsImgService } from '../services/api-cars-img.service';
@@ -11,11 +11,12 @@ import { HttpErrorResponse } from '@angular/common/http';
   styleUrl: 'main.component.css'
 })
 
-export class SnapshotComponent  {
+export class SnapshotComponent {
 
   title='SnapShotComponent';
 
   constructor(public apiService: ApiCarsImgService){}
+
 
   /** Objeto que va almacenar los valores del preview de las imagenes. */
 
@@ -48,6 +49,16 @@ export class SnapshotComponent  {
     color: 0
   }
 
+  message: string = '';
+  alertType: string = '';
+  saved: boolean = false;
+  
+  throwAlert(message: string, type: string){
+    this.saved = true;
+    this.message = message;
+    this.alertType = type;
+  }
+
 
   onNewPhoto(photo: imagePreview): void {
     console.log(photo);
@@ -77,24 +88,26 @@ export class SnapshotComponent  {
 
 saveImages():void{
  
-  this.apiService.SaveImagesVehicle(this.saveimagePayload).
+  this.apiService.SaveImagesVehicle(this.saveimagePayload, localStorage.getItem('Token')).
   subscribe({
     next:(data: any) => {
-      alert(data.mensaje);
-      this.reloadPage();
+      console.log(data)
+      this.throwAlert(data.mensaje, 'success');
+      setTimeout(() => {this.reloadPage()}, 2000);
     },
     error:(error: HttpErrorResponse) => {
-      if(error.status == 400){
-        alert("Debes de buscar el vehiculo y tambien tomar las 4 fotografias.")
-      }
+      this.throwAlert(error.error.mensaje, 'danger');
       console.log(error)
     }
   })
+
+  this.saved = false;
 }
 
 reloadPage():void {
   window.location.reload();
   }
+
 
 
 }

@@ -15,9 +15,15 @@
   <preview-image [carPhotos]="imagePrevieCars"></preview-image>
 </div>
 
+<div *ngIf="saved" class="saveContainer">
+  <alert [type]="alertType" [dismissOnTimeout]="3000" >{{message}}</alert>
+</div>
+
 <div class="saveContainer">
   <button class="btn btn-primary" (click)="saveImages()">Save</button>
 </div>
+
+
 
 
 
