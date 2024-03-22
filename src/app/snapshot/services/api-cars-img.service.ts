@@ -28,6 +28,7 @@ export class ApiCarsImgService {
 
   token: string | null = localStorage.getItem('Token');
 
+
   getAllVehiclesData(): Observable<Object> {
     return this.http.get(`${this.urlApiCarsImg}api/Vehicle?user=${this.token}`, this.httpOptions);
   }
@@ -40,8 +41,8 @@ export class ApiCarsImgService {
     return this.http.get<chasis[]>(`${this.urlApiCarsImg}api/Vehicle/allChasis?user=${this.token}`, this.httpOptions);
   }
 
-  getChasis(chasis: string): Observable<chasis[]>{
-    return this.http.get<chasis[]>(`${this.urlApiCarsImg}api/Vehicle/single/${chasis}?user=${this.token}`, this.httpOptions);
+  getChasis(chasis: string, tokenUser: string | null): Observable<chasis[]>{
+    return this.http.get<chasis[]>(`${this.urlApiCarsImg}api/Vehicle/single/${chasis}?user=${tokenUser}`, this.httpOptions);
   }
 
   /*------------------------------------------------------------------- */
@@ -56,8 +57,8 @@ export class ApiCarsImgService {
     return this.http.get(`${this.urlApiCarsImg}api/ImgVehicle/${num_order}?user=${this.token}`, this.httpOptions);
   }
 
-  SaveImagesVehicle(payload: ImgVehicle) {
-    return this.http.post(`${this.urlApiCarsImg}api/ImgVehicle?user=${this.token}`, payload, this.httpOptions);
+  SaveImagesVehicle(payload: ImgVehicle, tokenUser: string | null) {
+    return this.http.post(`${this.urlApiCarsImg}api/ImgVehicle?user=${tokenUser}`, payload, this.httpOptions);
   }
 
   /* ------------------------------------------------------------------ */
