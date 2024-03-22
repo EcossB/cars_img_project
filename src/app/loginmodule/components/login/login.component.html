@@ -26,6 +26,13 @@
             </div>
             
         </form>
+
+    </div>
+
+    <div *ngIf="logIn" class="loginContainer">
+        <alert [type]="alertType" [dismissOnTimeout]="3000" >{{Message}}</alert>
     </div>
 
 </section>
+
+
