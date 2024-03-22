@@ -68,7 +68,7 @@ SearchChasis():void {
     debounceTime(300),
     distinctUntilChanged(),
     switchMap((chasis: string) => 
-    this.apiService.getChasis(chasis)),
+    this.apiService.getChasis(chasis, localStorage.getItem('Token'))),
     tap((_) => (this.loading = false))
   );
 }

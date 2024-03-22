@@ -33,7 +33,7 @@
                   class="list-group-item list-group-item-action"
                   *ngFor="let chasis of chasis$ | async"
                 >
-                  <div class="d-flex p-2 bd-highlight"  (click)="onSelected($event); getVehicleByChasis(selectedChasis)">
+                  <div class="d-flex p-2 bd-highlight"  (click)="onSelected($event); getVehicleByChasis(selectedChasis); modalRef?.hide(); ">
                     <p class="ms-3">{{ chasis.chasis }}</p>
                   </div>
                 </div>
