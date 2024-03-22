@@ -16,6 +16,7 @@ import { WebcamModule } from 'ngx-webcam';
 import { HttpClientModule } from '@angular/common/http';
 import { AuthService } from '../loginmodule/services/auth.service';
 import { AuthGuardService } from '../loginmodule/services/auth-guard.service';
+import { AlertModule } from 'ngx-bootstrap/alert';
 
 
 @NgModule({
@@ -30,7 +31,8 @@ import { AuthGuardService } from '../loginmodule/services/auth-guard.service';
     WebcamModule,
     HttpClientModule,
     FormsModule,
-    NavbarModule
+    NavbarModule,
+    AlertModule.forRoot()
   ],
   providers:[ApiCarsImgService, AuthService, AuthGuardService]
 })
