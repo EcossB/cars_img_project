@@ -5,8 +5,8 @@ import { Component, OnInit } from '@angular/core';
     templateUrl: 'main-report.component.html'
 })
 
-export class MainReportComponent implements OnInit {
+export class MainReportComponent  {
     constructor() { }
 
-    ngOnInit() { }
+
 }
