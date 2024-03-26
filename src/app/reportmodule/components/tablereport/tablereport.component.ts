@@ -14,17 +14,22 @@ export class TablereportComponent {
 
   imgCarDataList: ImgCarData[] = [];
 
-  numOrder: number = 0;
+
+  numOrder: number = 0 ;
 
 
-  getImagesbyNumOrder(num_Order: number){
+  getImagesbyNumOrder(num_Order: any){
     this.apiService.getImagesVehicleByNumOrder(num_Order)
     .subscribe({
       next: (data: any) => {
         console.log(data);
+        console.log(parseInt(num_Order));
+        this.imgCarDataList = data;
+        console.log(this.imgCarDataList);
       },
       error: (error: HttpErrorResponse) => {
         console.log(error);
+        console.log(parseInt(num_Order));
       }
     })
   }

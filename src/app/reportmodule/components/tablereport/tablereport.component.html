@@ -1,19 +1,22 @@
+
+
 <div class="d-lg-flex mx-lg-5 my-lg-3">
-    <form class="d-flex" role="search" (submit)="getImagesbyNumOrder(numOrder)">
+    <form class="d-flex" role="search" >
         <input class="form-control me-2"
          type="search" placeholder="Numero de orden"
          aria-label="Search"
-         [(ngModel)]="numOrder">
-        <button class="btn btn-outline-success" type="submit">Buscar</button>
+         [(ngModel)]="numOrder" [ngModelOptions]="{ standalone: true }"
+         #valor>
+        <button class="btn btn-outline-success" type="submit" (click)="getImagesbyNumOrder(numOrder)">Buscar</button>
     </form>
 </div>
 
 
 <hr class="d-flex mx-lg-5">
 
-<div class="d-flex table-responsive mx-lg-5">
+<div class="d-flex table-responsive mx-lg-5" >
     <table class="table table-dark table-striped table-hover">
-        <thead class="thead-inverse">
+        <thead class="thead-inverse" >
 
             <tr>
 
@@ -44,33 +47,33 @@
                 <th>
                     Trasero
                 </th>
-                
+
             </tr>
 
         </thead>
 
-        <tbody>
+        <tbody *ngFor="let data of imgCarDataList">
             <tr>
                 <td>
-                    AV
+                    {{data.compania}}
                 </td>
                 <td>
-                    SD
+                  {{data.sucursal}}
                 </td>
                 <td>
-                    15203
+                  {{data.orden_Numero}}
                 </td>
                 <td>
-                    imagen
+                    <img [src]="data.img_lateral_derecho">
                 </td>
                 <td>
-                    imagen
+                  <img [src]="data.img_lateral_izquierdo">
                 </td>
                 <td>
-                    imagen
+                  <img [src]="data.img_frontal">
                 </td>
                 <td>
-                    imagen
+                  <img [src]="data.img_trasero">
                 </td>
             </tr>
         </tbody>
