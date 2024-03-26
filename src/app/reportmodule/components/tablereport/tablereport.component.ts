@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ApiCarsImgService } from '../../../snapshot/services/api-cars-img.service';
 import { ImgCarData } from '../../interface/imgCarData.interface';
 import { HttpErrorResponse } from '@angular/common/http';
@@ -8,7 +8,7 @@ import { HttpErrorResponse } from '@angular/common/http';
   templateUrl: './tablereport.component.html',
   styleUrl: './tablereport.component.css'
 })
-export class TablereportComponent {
+export class TablereportComponent implements OnInit{
 
   constructor(public apiService: ApiCarsImgService){}
 
@@ -22,10 +22,8 @@ export class TablereportComponent {
     this.apiService.getImagesVehicleByNumOrder(num_Order)
     .subscribe({
       next: (data: any) => {
-        console.log(data);
-        console.log(parseInt(num_Order));
-        this.imgCarDataList = data;
-        console.log(this.imgCarDataList);
+        this.imgCarDataList = [];
+        this.imgCarDataList.push(data);
       },
       error: (error: HttpErrorResponse) => {
         console.log(error);
@@ -33,5 +31,21 @@ export class TablereportComponent {
       }
     })
   }
+
+  getAllImages(): void {
+    this.apiService.getAllImagesVehicle().subscribe({
+      next: (data: any) => {
+        this.imgCarDataList = data;
+      },
+      error: (error: HttpErrorResponse) => {
+        console.log(error);
+      }
+    })
+  }
+
+  ngOnInit(): void {
+    this.getAllImages();
+  }
+
 
 }
