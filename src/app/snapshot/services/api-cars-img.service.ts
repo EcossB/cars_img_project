@@ -6,6 +6,7 @@ import { chasis } from '../interfaces/chasis.interface';
 import { FormGroup } from '@angular/forms';
 import { LoginResponse } from '../interfaces/login.interface';
 import { message } from '../../loginmodule/interface/message.interface';
+import { ImgCarData } from '../../reportmodule/interface/imgCarData.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -15,6 +16,7 @@ export class ApiCarsImgService {
   constructor(public http: HttpClient) { }
 
   private urlApiCarsImg: string = 'https://localhost:7016/';
+  private issApiUrl: string = 'http://172.24.3.124:3200/';
 
   /*---- these methods are for retrieve the data of the Endpoint {vehicle} in the Api. ----- */
   /*----- the data that is coming, its for the component car-data. -----*/
@@ -54,7 +56,7 @@ export class ApiCarsImgService {
   }
 
   getImagesVehicleByNumOrder(num_order: number): Observable<Object> {
-    return this.http.get(`${this.urlApiCarsImg}api/ImgVehicle/${num_order}?user=${this.token}`, this.httpOptions);
+    return this.http.get<ImgCarData[]>(`${this.urlApiCarsImg}api/ImgVehicle/${num_order}?user=${this.token}`, this.httpOptions);
   }
 
   SaveImagesVehicle(payload: ImgVehicle, tokenUser: string | null) {
