@@ -15,8 +15,9 @@ export class ApiCarsImgService {
 
   constructor(public http: HttpClient) { }
 
-  private urlApiCarsImg: string = 'https://localhost:7016/';
-  private issApiUrl: string = 'http://172.24.3.124:3200/';
+  //private urlApiCarsImg: string = 'https://localhost:7016/';
+  private urlApiCarsImg: string = 'http://172.24.3.124:3200/api';
+  //private urlApiCarsImg: string = '/api';
 
   /*---- these methods are for retrieve the data of the Endpoint {vehicle} in the Api. ----- */
   /*----- the data that is coming, its for the component car-data. -----*/
@@ -32,19 +33,19 @@ export class ApiCarsImgService {
 
 
   getAllVehiclesData(): Observable<Object> {
-    return this.http.get(`${this.urlApiCarsImg}api/Vehicle?user=${this.token}`, this.httpOptions);
+    return this.http.get(`${this.urlApiCarsImg}/Vehicle?user=${this.token}`, this.httpOptions);
   }
 
   getVehicleByChasis(chasis: string): Observable<Object>{
-    return this.http.get(`${this.urlApiCarsImg}api/Vehicle/${chasis}?user=${this.token}`, this.httpOptions);
+    return this.http.get(`${this.urlApiCarsImg}/Vehicle/${chasis}?user=${this.token}`, this.httpOptions);
   }
 
   getAllChasis(): Observable<chasis[]> {
-    return this.http.get<chasis[]>(`${this.urlApiCarsImg}api/Vehicle/allChasis?user=${this.token}`, this.httpOptions);
+    return this.http.get<chasis[]>(`${this.urlApiCarsImg}/Vehicle/allChasis?user=${this.token}`, this.httpOptions);
   }
 
   getChasis(chasis: string, tokenUser: string | null): Observable<chasis[]>{
-    return this.http.get<chasis[]>(`${this.urlApiCarsImg}api/Vehicle/single/${chasis}?user=${tokenUser}`, this.httpOptions);
+    return this.http.get<chasis[]>(`${this.urlApiCarsImg}/Vehicle/single/${chasis}?user=${tokenUser}`, this.httpOptions);
   }
 
   /*------------------------------------------------------------------- */
@@ -52,22 +53,22 @@ export class ApiCarsImgService {
   /*Methods for endpoint ImgVehicle, these methods save and retrieve data for the image vehicles. */
 
   getAllImagesVehicle(): Observable<Object> {
-    return this.http.get(`${this.urlApiCarsImg}api/ImgVehicle?user=${this.token}`, this.httpOptions);
+    return this.http.get(`${this.urlApiCarsImg}/ImgVehicle?user=${this.token}`, this.httpOptions);
   }
 
   getImagesVehicleByNumOrder(num_order: number): Observable<Object> {
-    return this.http.get<ImgCarData[]>(`${this.urlApiCarsImg}api/ImgVehicle/${num_order}?user=${this.token}`, this.httpOptions);
+    return this.http.get<ImgCarData[]>(`${this.urlApiCarsImg}/ImgVehicle/${num_order}?user=${this.token}`, this.httpOptions);
   }
 
   SaveImagesVehicle(payload: ImgVehicle, tokenUser: string | null) {
-    return this.http.post(`${this.urlApiCarsImg}api/ImgVehicle?user=${tokenUser}`, payload, this.httpOptions);
+    return this.http.post(`${this.urlApiCarsImg}/ImgVehicle?user=${tokenUser}`, payload, this.httpOptions);
   }
 
   /* ------------------------------------------------------------------ */
   /*The next methods are for login and logout endpoints. */
 
   LoginUser(form: FormGroup){
-    return this.http.post<{user: LoginResponse}>(`${this.urlApiCarsImg}api/Auth`, form.getRawValue());
+    return this.http.post<{user: LoginResponse}>(`${this.urlApiCarsImg}/Auth`, form.getRawValue());
   }
 
   LogOutUser(form: any){
