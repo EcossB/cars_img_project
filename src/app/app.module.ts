@@ -18,13 +18,13 @@ import { ReportModule } from './reportmodule/report.module';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
-    SnapshotModule,
-    WebcamModule,
-    LoginModule,
-    NavbarModule,
-    FormsModule,
-    ReportModule
+    AppRoutingModule, // para las redirecciones de las urls.
+    SnapshotModule, // modulo que contiene los componentes de camara, ordenes y previsualizacion de imagenes
+    WebcamModule, // modulo para poder habitar ngx webcam y asi usar la camara del dipositivo
+    LoginModule, // modulo del login Creado por mi para la autenticacion y autorizacion.
+    NavbarModule, // modulo creado por mi que contiene el navbar de la app.
+    FormsModule, // Modulo de angular para el uso de ngModel.
+    ReportModule // modulo de reporte creado por mi para crear reporte de las imagenes de los autos.
   ],
   providers: [],
   bootstrap: [AppComponent]

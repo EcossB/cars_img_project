@@ -8,5 +8,8 @@ export class AuthService {
 
   constructor() { }
 
+  /*
+  * Este signal lo que hace es indicarle a toda la app que el usuario esta logueado o no.
+   */
   currentUserSig = signal<LoginResponse | undefined | null>(undefined);
 }
