@@ -2,3 +2,8 @@
     margin-bottom: 1rem;
     width: 100%;
 }
+
+.previewSelectOrder{
+    border: 5px gray solid;
+    border-radius: 1rem;
+}
