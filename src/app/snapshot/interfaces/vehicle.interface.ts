@@ -2,10 +2,9 @@ export interface Vehicle  {
     compania: string,
     sucursal: string,
     orden_Numero: number,
-    chasis: string,
+    fecha_orden: Number
+    nombre_cliente: string,
     marca: number,
     modelo: number,
-    ano: number,
-    placa: string,
-    color: number
-  }
+    placa: string
+}
