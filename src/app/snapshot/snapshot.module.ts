@@ -25,7 +25,7 @@ import { AlertModule } from 'ngx-bootstrap/alert';
     SnapshotComponent
   ],
   imports: [
-    CommonModule,
+    CommonModule, 
     TooltipModule.forRoot(),
     ModalModule.forRoot(),
     WebcamModule,
