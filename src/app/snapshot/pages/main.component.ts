@@ -41,12 +41,11 @@ export class SnapshotComponent {
     compania: '',
     sucursal: '',
     orden_Numero: 0,
-    chasis: '',
+    fecha_orden: Date.now(),
+    nombre_cliente: '',
     marca: 0,
     modelo: 0,
-    ano: 0,
-    placa: '',
-    color: 0
+    placa: ''
   }
 
   message: string = '';
@@ -97,6 +96,7 @@ saveImages():void{
     },
     error:(error: HttpErrorResponse) => {
       this.throwAlert(error.error.mensaje, 'danger');
+      console.log(this.saveimagePayload);
       console.log(error)
     }
   })
