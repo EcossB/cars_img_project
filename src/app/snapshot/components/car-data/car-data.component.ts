@@ -27,19 +27,22 @@ constructor(
   /* 
     Array que contendra las ordenes que estan pendientes para tirar fotos.  
   */
-  vehicleData: OrderVehicles[] = [];
+  vehicleData: Vehicle[] = [];
 
   /*
    * propiedad la cual utilizamos para cuando seleccionamos una fila en la tabla 
    * Esto lo que hace es que el contenedor que muestra la fila seleccionada esta relacionada
    * con esta propiedad.
    */
-  vehicleSelected: OrderVehicles = {
-    nombre: '',
+  vehicleObtained: Vehicle = {
+    compania: '',
+    sucursal: '',
+    orden_Numero: 0,
+    fecha_orden: Date.now(),
+    nombre_cliente: '',
     marca: 0,
     modelo: 0,
-    placa: '',
-    color: 0
+    placa: ''
   }
   
   @Output()
@@ -72,23 +75,29 @@ constructor(
  */
   onSelected(event: any) {
     var statev = event.target.textContent
-    this.vehicleSelected = statev;
-    console.log(this.vehicleSelected);
+    //this.vehicleObtained = statev;
+    console.log(this.vehicleObtained);
   }
 
 /** 
  * 
  * @param c Es la orden seleccionada en la filas de las tablas.
  * 
-  ** Igualamos las propiedades del parametro con las propiedades de vehicleSelected
+  ** Igualamos las propiedades del parametro con las propiedades de vehicleObtained
  */
-  selectRow(c:OrderVehicles){
+  selectRow(c:Vehicle){
     console.log(c);
-    this.vehicleSelected.nombre = c.nombre;
-    this.vehicleSelected.marca = c.marca;
-    this.vehicleSelected.modelo = c.modelo;
-    this.vehicleSelected.color = c.color;
-    this.vehicleSelected.placa = c.placa;
+    this.vehicleObtained.compania = c.compania;
+    this.vehicleObtained.sucursal = c.sucursal;
+    this.vehicleObtained.orden_Numero = c.orden_Numero;
+    this.vehicleObtained.nombre_cliente = c.nombre_cliente;
+    this.vehicleObtained.marca = c.marca;
+    this.vehicleObtained.modelo = c.modelo;
+    this.vehicleObtained.fecha_orden = c.fecha_orden;
+    this.vehicleObtained.placa = c.placa;
+
+    this.onNewDataTable.emit(this.vehicleObtained);
+
   }
 
   ngOnInit(): void {
