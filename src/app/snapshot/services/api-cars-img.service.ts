@@ -72,7 +72,7 @@ export class ApiCarsImgService {
   }
 
   LogOutUser(form: any){
-    return this.http.post<{mesage: message}>(`${this.urlApiCarsImg}logout`, form);
+    return this.http.post<{mesage: message}>(`${this.urlApiCarsImg}/Auth/logout`, form);
   }
 
 }
