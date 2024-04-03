@@ -1,5 +1,3 @@
-
-
 <div class="d-lg-flex mx-lg-5 my-lg-3">
     <form class="d-flex" role="search" >
         <input class="form-control me-2"
@@ -11,72 +9,25 @@
     </form>
 </div>
 
+<hr>
 
-<hr class="d-flex mx-lg-5">
+<section class="mainContainer">
 
-<div class="d-flex table-responsive mx-lg-5" >
-    <table class="table table-dark table-striped table-hover">
-        <thead class="thead-inverse" >
+    <div class="imgContainer" *ngFor="let vehicle of imgCarDataList">
 
-            <tr>
+        <h3 class="mx-3 my-3">Detalles de la Orden</h3>
 
-                <th>
-                    Compania
-                </th>
+        <hr class="mx-1">
+        <ul>
+            <li> <strong>Numero de Orden: </strong> <br> {{vehicle.orden_Numero}}</li>
+            <li> <strong>Compania: </strong> {{vehicle.compania}}</li>
+            <li> <strong>Sucursal: </strong> {{vehicle.sucursal}}</li>
+        </ul>
+        <hr class="mx-1">
 
-                <th>
-                    Sucursal
-                </th>
+        <div class="d-flex justify-content-center my-1">
+            <button class="btn btn-primary">Ver imagenes</button>
+        </div>
+    </div>
 
-                <th>
-                    Num Orden
-                </th>
-
-                <th>
-                    Lateral Der
-                </th>
-
-                <th>
-                    Lateral Izq
-                </th>
-
-                <th>
-                    Frente
-                </th>
-
-                <th>
-                    Trasero
-                </th>
-
-            </tr>
-
-        </thead>
-
-        <tbody >
-            <tr *ngFor="let data of imgCarDataList">
-                <td>
-                    {{data.compania}}
-                </td>
-                <td>
-                  {{data.sucursal}}
-                </td>
-                <td>
-                  {{data.orden_Numero}}
-                </td>
-                <td>
-                    <img [src]="data.img_lateral_derecho">
-                </td>
-                <td>
-                  <img [src]="data.img_lateral_izquierdo">
-                </td>
-                <td>
-                  <img [src]="data.img_frontal">
-                </td>
-                <td>
-                  <img [src]="data.img_trasero">
-                </td>
-            </tr>
-        </tbody>
-
-    </table>
-</div>
+</section>
