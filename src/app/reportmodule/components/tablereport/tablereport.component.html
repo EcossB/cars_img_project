@@ -26,8 +26,60 @@
         <hr class="mx-1">
 
         <div class="d-flex justify-content-center my-1">
-            <button class="btn btn-primary">Ver imagenes</button>
+            <button class="btn btn-primary" (click)="openModal(Carrousel , vehicle)">Ver imagenes</button>
         </div>
     </div>
-
 </section>
+
+<ng-template #Carrousel >
+    <div class="modal-header">
+        <h4 class="modal-title pull-left">Right Car Side</h4>
+        <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="modalRef?.hide()">
+          <span aria-hidden="true" class="visually-hidden">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        
+        <carousel [isAnimated]="true">
+            <slide>
+              <img [src]='OrderSelected.img_lateral_derecho' alt="first slide" style="display: block; width: 100%;">
+              
+              <div class="carousel-caption">
+                <h4>Lateral Derecho</h4>
+              </div>
+
+            </slide>
+
+            <slide>
+              <img [src]='OrderSelected.img_lateral_izquierdo' alt="second slide" style="display: block; width: 100%;">
+            
+              <div class="carousel-caption">
+                <h4>Lateral Izquierdo</h4>
+              </div>
+
+            </slide>
+
+            <slide>
+              <img [src]='OrderSelected.img_frontal' alt="third slide" style="display: block; width: 100%;">
+              
+              <div class="carousel-caption">
+                <h4>Frontal</h4>
+              </div>
+
+            </slide>
+
+            <slide>
+                <img [src]='OrderSelected.img_trasero' alt="fourth slide slide" style="display: block; width: 100%;">
+            
+                <div class="carousel-caption">
+                    <h4>Trasera</h4>
+                  </div>
+            
+            </slide>
+          </carousel>
+
+      </div>
+      <div class="modal-footer d-flex justify-content-center my-1">
+        <button class="btn btn-danger btn-lg" (click)="generatePdf()">Generar PDF</button>
+      </div>
+</ng-template>
