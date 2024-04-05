@@ -1,4 +1,4 @@
-<div class="d-lg-flex mx-lg-5 my-lg-3">
+<div class="d-lg-flex mx-lg-5 my-lg-3 justify-content-center">
     <form class="d-flex" role="search" >
         <input class="form-control me-2"
          type="search" placeholder="Numero de orden"
@@ -82,4 +82,56 @@
       <div class="modal-footer d-flex justify-content-center my-1">
         <button class="btn btn-danger btn-lg" (click)="generatePdf()">Generar PDF</button>
       </div>
+</ng-template>
+
+
+<ng-template #structurePdf id="pdfContent">
+
+<div id="pdfContent2">
+    <div class="jumbotron text-center">
+        <img src="assets\bluePrintCar\LogoMelien.png" >
+      <h2>Reporte detalles de imagenes de vehiculos</h2>
+      <p>Poner Fecha Aca.</p>
+    </div>
+    
+    <div class="d-flex justify-content-center">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Compañia</th>
+            <th scope="col">Sucursal</th>
+            <th scope="col">Numero Orden</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr> <!-- poner el ng for aca-->
+            <td>{{OrderSelected.compania}}</td>
+            <td>{{OrderSelected.sucursal}}</td>
+            <td>{{OrderSelected.orden_Numero}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <br>
+    
+    <h3>Imagen Lateral Derecho </h3>
+    <img [src]="OrderSelected.img_lateral_derecho" >
+    <br>
+    
+    
+    <h3>Imagen Lateral izquierdo </h3>
+    <img [src]="OrderSelected.img_lateral_izquierdo" >
+    <br>
+    
+    
+    <h3>Imagen Frontal </h3>
+    <img [src]="OrderSelected.img_frontal" >
+    <br>
+    
+    
+    <h3>Imagen Trasera </h3>
+    <img [src]="OrderSelected.img_trasero" >
+    <br>
+</div>
+
 </ng-template>
