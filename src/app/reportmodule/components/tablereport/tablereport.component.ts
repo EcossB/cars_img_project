@@ -3,7 +3,8 @@ import { ApiCarsImgService } from '../../../snapshot/services/api-cars-img.servi
 import { ImgCarData } from '../../interface/imgCarData.interface';
 import { HttpErrorResponse } from '@angular/common/http';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
-import { ITable, Img, PdfMakeWrapper, Table, Txt } from 'pdfmake-wrapper';
+import  {jsPDF}  from 'jspdf';
+import html2canvas from 'html2canvas';
 
 @Component({
   selector: 'report-tablereport',
@@ -29,53 +30,6 @@ export class TablereportComponent implements OnInit{
     this.OrderSelected = order;
   }
 
-  generatePdf(){
-    const pdf = new PdfMakeWrapper();
-
-    let dateNow = new Date().toDateString();
-
-
-    pdf.add(this.createText('Reporte detalles de imagenes de vehiculos').alignment('center').bold().end);
-    pdf.add('\n');
-    pdf.add(this.createText(dateNow).alignment('center').end);
-    pdf.add('\n \n');
-    pdf.add(this.createTable());
-    pdf.add('\n \n');
-    pdf.add(this.createText('Imagenes Lateral Derecho').bold().end);
-    pdf.add('\n');
-    
-    pdf.add(this.createImgLateral(this.OrderSelected.img_lateral_derecho, pdf));
-
-    //pdf.images({picture1: `${this.OrderSelected.img_lateral_derecho}`})
-
-    pdf.create().open();
-  }
-
-  createTable(): ITable {
-    
-    return new Table([
-      ['Compania', 'Sucursal', 'Numero de Orden'],
-      [this.OrderSelected.compania, this.OrderSelected.sucursal, this.OrderSelected.orden_Numero]
-    ])
-    .layout('lightHorizontalLines')
-    .width('auto')
-    .alignment('center')
-    .end;
-  }
-
-   createImgLateral(stringImg : string, pdf: PdfMakeWrapper) {
-      pdf.images({
-        picture: (`${stringImg}`)
-      });
-
-      console.log(stringImg);
-  }
-
-  createText(text: string) {
-    return new Txt(text);
-  }
-
-
   getImagesbyNumOrder(num_Order: any){
     this.apiService.getImagesVehicleByNumOrder(num_Order)
     .subscribe({
@@ -99,6 +53,28 @@ export class TablereportComponent implements OnInit{
         console.log(error);
       }
     })
+  }
+
+  generatePdf(): void {
+    const elementToPrint: HTMLElement = document.getElementById('pdfContent') as HTMLElement;
+
+    html2canvas(elementToPrint, {scale: 2}).then((canvas) => {
+      const pdf = new jsPDF();
+
+      pdf.addImage(canvas.toDataURL('image/png'), 'PNG', 0,0,211,298);
+
+      pdf.setProperties({
+        title: 'Reporte Imagenes',
+        subject: 'PDF con el reporte de la orden e imagenes',
+        author: 'Auto Vidrios Melien'
+      });
+
+      pdf.setFontSize(14);
+
+      pdf.save('reporte Imagenes.pdf');
+      
+    });
+
   }
 
   ngOnInit(): void {
