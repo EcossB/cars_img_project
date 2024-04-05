@@ -13,9 +13,9 @@ import { CheckGroup } from '../../interfaces/checkgroup.interface';
 })
 export class TakeImageComponent {
 
-
-
   constructor(private modalService: BsModalService) {}
+
+  saved: boolean = false;
 
   /* ----- These properties are the subjects that holds image --------*/
 
@@ -78,9 +78,11 @@ export class TakeImageComponent {
 
   captureImageRight(): void {
 
+    this.saved = true;
     this.carRight.next();
     this.onNewPhoto.emit(this.imageCarrete);
     this.inputsChecked.check1 = true;
+    setTimeout(() => {this.saved = false;}, 2000);
   }
 
   /* --------------------- Trigger, snapshotEvent and capture image for left side of vehicle--------------------------*/
@@ -95,9 +97,13 @@ export class TakeImageComponent {
   }
 
   captureImageLeft( ): void {
+
+    this.saved = true;
     this.carleft.next();
     this.onNewPhoto.emit(this.imageCarrete);
     this.inputsChecked.check4 = true;
+    setTimeout(() => {this.saved = false;}, 2000);
+
 
 
   }
@@ -115,9 +121,13 @@ export class TakeImageComponent {
   }
 
   captureImageFront( ): void {
+
+    this.saved = true;
     this.carFront.next();
     this.onNewPhoto.emit(this.imageCarrete);
     this.inputsChecked.check2 = true;
+    setTimeout(() => {this.saved = false;}, 2000);
+
 
 
   }
@@ -134,9 +144,13 @@ export class TakeImageComponent {
   }
 
   captureImageBack( ): void {
+
+    this.saved = true;
     this.carBack.next();
     this.onNewPhoto.emit(this.imageCarrete);
     this.inputsChecked.check3 = true;
+    setTimeout(() => {this.saved = false;}, 2000);
+
   }
 
 

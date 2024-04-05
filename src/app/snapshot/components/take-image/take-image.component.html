@@ -59,9 +59,14 @@
 
     ></webcam>
   </div>
-  <div class="modal-footer">
+  <div class="modal-footer d-flex justify-content-center my-1">
     <button class="btn btn-primary btn-lg" (click)="captureImageRight()"> capture image </button>
   </div>
+  
+  <div *ngIf="saved" class="d-flex justify-content-center">
+    <alert type="success" [dismissOnTimeout]="2000" >Imagen Capturada</alert>
+  </div>
+
 </ng-template>
 
 <!-- -------------------- Ng template for car left modal. -------------------------------- -->
@@ -82,8 +87,11 @@
     (imageCapture)="snapshot1($event)"
     [imageQuality]="1"></webcam>
   </div>
-  <div class="modal-footer">
+  <div class="modal-footer d-flex justify-content-center my-1">
     <button class="btn btn-primary" (click)="captureImageLeft()"> capture image </button>
+  </div>
+  <div *ngIf="saved" class="d-flex justify-content-center">
+    <alert type="success" [dismissOnTimeout]="2000" >Imagen Capturada</alert>
   </div>
 </ng-template>
 
@@ -107,8 +115,11 @@
     (imageCapture)="snapshot2($event)"
     [imageQuality]="1"></webcam>
   </div>
-  <div class="modal-footer">
+  <div class="modal-footer d-flex justify-content-center my-1">
     <button class="btn btn-primary" (click)="captureImageFront()"> capture image </button>
+  </div>
+  <div *ngIf="saved" class="d-flex justify-content-center">
+    <alert type="success" [dismissOnTimeout]="2000" >Imagen Capturada</alert>
   </div>
 </ng-template>
 
@@ -130,9 +141,14 @@
     (imageCapture)="snapshot3($event)"
     [imageQuality]="1"></webcam>
   </div>
-  <div class="modal-footer">
-    <button class="btn btn-primary" (click)="captureImageBack()"> capture image </button>
+  <div class="modal-footer d-flex justify-content-center my-1">
+    <button class="btn btn-primary" (click)="captureImageBack()"> capture image </button> 
   </div>
+
+  <div *ngIf="saved" class="d-flex justify-content-center my-1">
+    <alert type="success" [dismissOnTimeout]="2000" >Imagen Capturada</alert>
+  </div>
+
 </ng-template>
 
 
