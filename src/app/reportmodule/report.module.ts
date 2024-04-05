@@ -11,10 +11,9 @@ import { ApiCarsImgService } from '../snapshot/services/api-cars-img.service';
 import { NavbarModule } from '../navbar/navbar.module';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { CarouselModule } from 'ngx-bootstrap/carousel';
-import { PdfMakeWrapper } from 'pdfmake-wrapper';
-import * as pdfFonts from "pdfmake/build/vfs_fonts";
+import * as jsPDF  from 'jspdf';
+import html2canvas from 'html2canvas';
 
-PdfMakeWrapper.setFonts(pdfFonts);
 
 @NgModule({
   declarations: [MainReportComponent, TablereportComponent],
