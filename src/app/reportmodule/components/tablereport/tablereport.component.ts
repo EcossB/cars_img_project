@@ -5,6 +5,8 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import  {jsPDF}  from 'jspdf';
 import html2canvas from 'html2canvas';
+import { Router } from '@angular/router';
+import { BehaviorReportService } from '../../service/behaviorReport.service';
 
 @Component({
   selector: 'report-tablereport',
@@ -15,7 +17,9 @@ export class TablereportComponent implements OnInit{
 
   constructor(
     public apiService: ApiCarsImgService,
-    private modalService: BsModalService){}
+    private modalService: BsModalService,
+    public router: Router,
+    private reportService: BehaviorReportService){}
 
   imgCarDataList: ImgCarData[] = [];
 
@@ -56,37 +60,6 @@ export class TablereportComponent implements OnInit{
   }
 
   generatePdf(): void {
-    const elementToPrint: HTMLElement = document.getElementById('pdfContent') as HTMLElement;
-
-    html2canvas(elementToPrint, {scale: 2}).then((canvas) => {
-      const pdf = new jsPDF();
-
-      pdf.addImage(canvas.toDataURL('image/png'), 'PNG', 0,0,211,298);
-
-      pdf.setProperties({
-        title: 'Reporte Imagenes',
-        subject: 'PDF con el reporte de la orden e imagenes',
-        author: 'Auto Vidrios Melien'
-      });
-
-      pdf.setFontSize(14);
-
-      pdf.save('reporte Imagenes.pdf');
-
-    });
-
-    // const timeElapsed = Date.now();
-    // const today = new Date(timeElapsed);
-
-    // const columns = ["Compañia", "Sucursal", "Numero Orden"];
-    // const row = [
-    //   this.OrderSelected.compania,
-    //   this.OrderSelected.sucursal,
-    //   this.OrderSelected.orden_Numero
-    // ];
-    // const tableOptions = {
-    //   startY: 65
-    // }
 
     // const doc = new jsPDF();
 
@@ -114,7 +87,9 @@ export class TablereportComponent implements OnInit{
     //   150);
 
     // doc.save('PdfTest.pdf');
-
+    this.modalRef?.hide()
+    this.reportService.setReport(this.OrderSelected);
+    this.router.navigateByUrl('/Preview');
   }
 
   ngOnInit(): void {
