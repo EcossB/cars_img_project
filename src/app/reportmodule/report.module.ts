@@ -13,10 +13,12 @@ import { ModalModule } from 'ngx-bootstrap/modal';
 import { CarouselModule } from 'ngx-bootstrap/carousel';
 import * as jsPDF  from 'jspdf';
 import html2canvas from 'html2canvas';
+import { PdfstructureComponent } from './components/tablereport/pdfstructure/pdfstructure.component';
+import { BehaviorReportService } from './service/behaviorReport.service';
 
 
 @NgModule({
-  declarations: [MainReportComponent, TablereportComponent],
+  declarations: [MainReportComponent, TablereportComponent, PdfstructureComponent],
   imports: [
     CommonModule,
     FormsModule,
@@ -26,6 +28,6 @@ import html2canvas from 'html2canvas';
     
   ],
   exports: [MainReportComponent, TablereportComponent],
-  providers:[ApiCarsImgService, AuthService, AuthGuardService]
+  providers:[ApiCarsImgService, AuthService, AuthGuardService, BehaviorReportService]
 })
 export class ReportModule { }
