@@ -72,8 +72,48 @@ export class TablereportComponent implements OnInit{
       pdf.setFontSize(14);
 
       pdf.save('reporte Imagenes.pdf');
-      
+
     });
+
+    // const timeElapsed = Date.now();
+    // const today = new Date(timeElapsed);
+
+    // const columns = ["Compañia", "Sucursal", "Numero Orden"];
+    // const row = [
+    //   this.OrderSelected.compania,
+    //   this.OrderSelected.sucursal,
+    //   this.OrderSelected.orden_Numero
+    // ];
+    // const tableOptions = {
+    //   startY: 65
+    // }
+
+    // const doc = new jsPDF();
+
+    // doc.addImage('../assets/bluePrintCar/LogoMelien.png',
+    // 'PNG',
+    // 60, //posicion en x
+    // 10, //posicion en y
+    // 100, //ancho
+    // 30 // altura
+    // );
+
+    // doc.setFont('Times');
+    // doc.setFontSize(18);
+    // doc.text('Reporte de Ordenes.', 85, 50);
+
+    // doc.setFontSize(12);
+    // doc.text(`${today.toLocaleDateString()}`,105, 55);
+
+
+    // doc.addImage(this.OrderSelected.img_lateral_derecho,
+    //   'JPEG',
+    //   35 ,
+    //   70 ,
+    //   150,
+    //   150);
+
+    // doc.save('PdfTest.pdf');
 
   }
 
