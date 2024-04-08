@@ -11,3 +11,7 @@
 .tableHeight{
     height: 8rem;
 }
+
+.tableHeading thead {
+    position: sticky;
+}

@@ -15,8 +15,8 @@ export class ApiCarsImgService {
 
   constructor(public http: HttpClient) { }
 
-  private urlApiCarsImg: string = 'https://localhost:7016/api';
-  //private urlApiCarsImg: string = 'http://172.24.3.124:3200/api';
+  //private urlApiCarsImg: string = 'https://localhost:7016/api';
+  private urlApiCarsImg: string = 'http://172.24.3.124:3200/api';
   //private urlApiCarsImg: string = '/api';
 
   /*---- these methods are for retrieve the data of the Endpoint {vehicle} in the Api. ----- */
