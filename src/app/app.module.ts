@@ -10,6 +10,9 @@ import { WebcamModule } from 'ngx-webcam';
 import { NavbarModule } from './navbar/navbar.module';
 import { FormsModule } from '@angular/forms';
 import { ReportModule } from './reportmodule/report.module';
+import { NgxUiLoaderModule } from 'ngx-ui-loader';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { ApiInterceptorService } from './snapshot/services/api-interceptor.service';
 
 
 @NgModule({
@@ -24,9 +27,10 @@ import { ReportModule } from './reportmodule/report.module';
     LoginModule, // modulo del login Creado por mi para la autenticacion y autorizacion.
     NavbarModule, // modulo creado por mi que contiene el navbar de la app.
     FormsModule, // Modulo de angular para el uso de ngModel.
-    ReportModule // modulo de reporte creado por mi para crear reporte de las imagenes de los autos.
+    ReportModule, // modulo de reporte creado por mi para crear reporte de las imagenes de los autos.
+    NgxUiLoaderModule
   ],
-  providers: [],
+  providers: [{provide: HTTP_INTERCEPTORS, useClass:ApiInterceptorService, multi: true }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

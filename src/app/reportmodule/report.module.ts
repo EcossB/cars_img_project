@@ -15,6 +15,9 @@ import * as jsPDF  from 'jspdf';
 import html2canvas from 'html2canvas';
 import { PdfstructureComponent } from './components/tablereport/pdfstructure/pdfstructure.component';
 import { BehaviorReportService } from './service/behaviorReport.service';
+import { ApiInterceptorService } from '../snapshot/services/api-interceptor.service';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { NgxUiLoaderModule } from 'ngx-ui-loader';
 
 
 @NgModule({
@@ -25,9 +28,11 @@ import { BehaviorReportService } from './service/behaviorReport.service';
     NavbarModule,
     ModalModule.forRoot(),
     CarouselModule.forRoot(),
+    NgxUiLoaderModule
     
   ],
   exports: [MainReportComponent, TablereportComponent],
-  providers:[ApiCarsImgService, AuthService, AuthGuardService, BehaviorReportService]
+  providers:[ApiCarsImgService, AuthService, AuthGuardService, BehaviorReportService,
+    {provide: HTTP_INTERCEPTORS, useClass:ApiInterceptorService, multi: true }]
 })
 export class ReportModule { }

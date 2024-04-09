@@ -13,10 +13,11 @@ import { NavbarModule } from '../navbar/navbar.module';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import {ModalModule} from 'ngx-bootstrap/modal';
 import { WebcamModule } from 'ngx-webcam';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AuthService } from '../loginmodule/services/auth.service';
 import { AuthGuardService } from '../loginmodule/services/auth-guard.service';
 import { AlertModule } from 'ngx-bootstrap/alert';
+import { NgxUiLoaderModule } from 'ngx-ui-loader';
 
 
 @NgModule({
@@ -32,7 +33,8 @@ import { AlertModule } from 'ngx-bootstrap/alert';
     HttpClientModule,
     FormsModule,
     NavbarModule,
-    AlertModule.forRoot()
+    AlertModule.forRoot(),
+    NgxUiLoaderModule
   ],
   providers:[ApiCarsImgService, AuthService, AuthGuardService]
 })
