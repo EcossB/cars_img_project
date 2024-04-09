@@ -2,7 +2,7 @@
   display: grid;
   gap: 0rem;
   grid-auto-flow: dense;
-  grid-auto-rows: 50%;
+  /*grid-auto-rows: 50%;*/
   grid-template-columns: repeat(auto-fit, minmax(22rem, 1fr));
 }
 
