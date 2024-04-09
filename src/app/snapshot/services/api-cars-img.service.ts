@@ -15,8 +15,8 @@ export class ApiCarsImgService {
 
   constructor(public http: HttpClient) { }
 
-  //private urlApiCarsImg: string = 'https://localhost:7016/api';
-  private urlApiCarsImg: string = 'http://172.24.3.124:3200/api';
+  private urlApiCarsImg: string = 'https://localhost:7016/api';
+  //private urlApiCarsImg: string = 'http://172.24.3.124:3200/api';
   //private urlApiCarsImg: string = '/api';
 
   /*---- these methods are for retrieve the data of the Endpoint {vehicle} in the Api. ----- */
@@ -62,6 +62,14 @@ export class ApiCarsImgService {
 
   SaveImagesVehicle(payload: ImgVehicle, tokenUser: string | null) {
     return this.http.post(`${this.urlApiCarsImg}/ImgVehicle?user=${tokenUser}`, payload, this.httpOptions);
+  }
+
+  getImagesVehiclePagination(tokenUser: string | null, page: number, limit: number): Observable<Object> {
+    return this.http.get<ImgCarData[]>(`${this.urlApiCarsImg}/pagination?user=${tokenUser}&pagina=${page}&limiteRegistro=${limit}`, this.httpOptions);
+  }
+
+  get5ImagesVehicle(): Observable<Object> {
+    return this.http.get(`${this.urlApiCarsImg}/get5first?user=${this.token}`, this.httpOptions);
   }
 
   /* ------------------------------------------------------------------ */
