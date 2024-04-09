@@ -48,8 +48,8 @@ export class TablereportComponent implements OnInit{
     })
   }
 
-  getAllImages(): void {
-    this.apiService.getAllImagesVehicle().subscribe({
+  get5Images(): void {
+    this.apiService.get5ImagesVehicle().subscribe({
       next: (data: any) => {
         this.imgCarDataList = data;
       },
@@ -93,7 +93,7 @@ export class TablereportComponent implements OnInit{
   }
 
   ngOnInit(): void {
-    this.getAllImages();
+    this.get5Images();
   }
 
 
