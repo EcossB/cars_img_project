@@ -24,7 +24,7 @@ export class TablereportComponent implements OnInit{
   imgCarDataList: ImgCarData[] = [];
 
   OrderSelected!: ImgCarData;
-
+  page: number = 1 // page for the pagination end
   numOrder: number = 0 ;
 
   modalRef?: BsModalRef;
@@ -33,6 +33,7 @@ export class TablereportComponent implements OnInit{
     this.modalRef = this.modalService.show(template);
     this.OrderSelected = order;
   }
+
 
   getImagesbyNumOrder(num_Order: any){
     this.apiService.getImagesVehicleByNumOrder(num_Order)
@@ -59,34 +60,27 @@ export class TablereportComponent implements OnInit{
     })
   }
 
+  onScroll():void {
+
+    let token = window.localStorage.getItem('Token');
+    
+
+    console.log(token)
+    this.page += 1;
+
+    this.apiService.getImagesVehiclePagination(token, this.page, 5 ).subscribe({
+      next: (data: any) => {
+        /** TODO: poner un if el cual valide que la data que venga no este vacia */
+        console.log(data);
+        this.imgCarDataList = this.imgCarDataList.concat(data);
+      },
+      error: (error) => {
+        console.log(error)
+      }
+    })
+  }
+
   generatePdf(): void {
-
-    // const doc = new jsPDF();
-
-    // doc.addImage('../assets/bluePrintCar/LogoMelien.png',
-    // 'PNG',
-    // 60, //posicion en x
-    // 10, //posicion en y
-    // 100, //ancho
-    // 30 // altura
-    // );
-
-    // doc.setFont('Times');
-    // doc.setFontSize(18);
-    // doc.text('Reporte de Ordenes.', 85, 50);
-
-    // doc.setFontSize(12);
-    // doc.text(`${today.toLocaleDateString()}`,105, 55);
-
-
-    // doc.addImage(this.OrderSelected.img_lateral_derecho,
-    //   'JPEG',
-    //   35 ,
-    //   70 ,
-    //   150,
-    //   150);
-
-    // doc.save('PdfTest.pdf');
     this.modalRef?.hide()
     this.reportService.setReport(this.OrderSelected);
     this.router.navigateByUrl('/Preview');
