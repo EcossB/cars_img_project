@@ -11,7 +11,8 @@
 
 <hr>
 
-<section class="mainContainer">
+<section class="mainContainer" infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollUpDistance]="2"
+[infiniteScrollThrottle]="0" (scrolled)="onScroll()">
 
     <div class="imgContainer" *ngFor="let vehicle of imgCarDataList">
 
