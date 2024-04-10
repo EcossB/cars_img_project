@@ -18,6 +18,7 @@ import { BehaviorReportService } from './service/behaviorReport.service';
 import { ApiInterceptorService } from '../snapshot/services/api-interceptor.service';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgxUiLoaderModule } from 'ngx-ui-loader';
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 
 
 @NgModule({
@@ -28,7 +29,8 @@ import { NgxUiLoaderModule } from 'ngx-ui-loader';
     NavbarModule,
     ModalModule.forRoot(),
     CarouselModule.forRoot(),
-    NgxUiLoaderModule
+    NgxUiLoaderModule,
+    InfiniteScrollModule
     
   ],
   exports: [MainReportComponent, TablereportComponent],
