@@ -12,22 +12,18 @@
 </section>
 
 <div class="previewContainer">
+  <h5 class="h5 mx-5">Imagenes Del Vehiculo</h5>
+  <hr class="mx-5">
   <preview-image [carPhotos]="imagePrevieCars"></preview-image>
 </div>
 
 <div *ngIf="saved" class="saveContainer">
-  <alert [type]="alertType" [dismissOnTimeout]="3000" >{{message}}</alert>
+  <alert [type]="alertType" [dismissOnTimeout]="3000">{{message}}</alert>
 </div>
 
 <div class="saveContainer">
   <button class="btn btn-primary" (click)="saveImages()">Save</button>
 </div>
 
-<ngx-ui-loader
-  bgsColor="#FFcc48"
-  text="Loading..."
-  pbColor="#B12BF7"
-  fgsType="fading-circle"
->
+<ngx-ui-loader bgsColor="#FFcc48" text="Loading..." pbColor="#B12BF7" fgsType="fading-circle">
 </ngx-ui-loader>
-
