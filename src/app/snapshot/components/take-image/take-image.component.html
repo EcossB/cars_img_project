@@ -43,7 +43,7 @@
 <!-- -------------------- Ng template for car right modal. -------------------------------- -->
 <ng-template #carRightT>
   <div class="modal-header">
-    <h4 class="modal-title pull-left">Right Car Side</h4>
+    <h4 class="modal-title pull-left">Lateral Derecho del Vehiculo</h4>
     <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="modalRef?.hide()">
       <span aria-hidden="true" class="visually-hidden">&times;</span>
     </button>
@@ -73,7 +73,7 @@
 
 <ng-template #carLeftT>
   <div class="modal-header">
-    <h4 class="modal-title pull-left">Left Car Side</h4>
+    <h4 class="modal-title pull-left">Lateral Izquierdo del Vehiculo</h4>
     <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="modalRef?.hide()">
       <span aria-hidden="true" class="visually-hidden">&times;</span>
     </button>
@@ -101,7 +101,7 @@
 
 <ng-template #carFrontT>
   <div class="modal-header">
-    <h4 class="modal-title pull-left">Front Car Side</h4>
+    <h4 class="modal-title pull-left">Lado Frontal del Vehiculo</h4>
     <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="modalRef?.hide()">
       <span aria-hidden="true" class="visually-hidden">&times;</span>
     </button>
@@ -127,7 +127,7 @@
 
 <ng-template #carBackT>
   <div class="modal-header">
-    <h4 class="modal-title pull-left">Back Car Side</h4>
+    <h4 class="modal-title pull-left">Lado Trasero del Vehiculo</h4>
     <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="modalRef?.hide()">
       <span aria-hidden="true" class="visually-hidden">&times;</span>
     </button>
@@ -151,6 +151,30 @@
 
 </ng-template>
 
+<ng-template #imgCristal1>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Lado Trasero del Vehiculo</h4>
+    <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="modalRef?.hide()">
+      <span aria-hidden="true" class="visually-hidden">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <!-- todo: cam image shown here in the body -->
+    <webcam
+    [width]="450"
+    [height]="450"
+    [trigger]="$carBack"
+    (imageCapture)="snapshot3($event)"
+    [imageQuality]="1"></webcam>
+  </div>
+  <div class="modal-footer d-flex justify-content-center my-1">
+    <button class="btn btn-primary" (click)="captureImageBack()"> capture image </button> 
+  </div>
 
+  <div *ngIf="saved" class="d-flex justify-content-center my-1">
+    <alert type="success" [dismissOnTimeout]="2000" >Imagen Capturada</alert>
+  </div>
+
+</ng-template>
 
 
