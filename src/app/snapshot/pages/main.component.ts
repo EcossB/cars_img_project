@@ -13,9 +13,9 @@ import { HttpErrorResponse } from '@angular/common/http';
 
 export class SnapshotComponent {
 
-  title='SnapShotComponent';
+  title = 'SnapShotComponent';
 
-  constructor(public apiService: ApiCarsImgService){}
+  constructor(public apiService: ApiCarsImgService) { }
 
 
   /** Objeto que va almacenar los valores del preview de las imagenes. */
@@ -34,7 +34,10 @@ export class SnapshotComponent {
     img_lateral_derecho: '',
     img_lateral_izquierdo: '',
     img_frontal: '',
-    img_trasero: ''
+    img_trasero: '',
+    img_anexo1: '',
+    img_anexo2: '',
+    img_anexo3: ''
   }
 
   vehicleObtained: Vehicle = {
@@ -51,8 +54,8 @@ export class SnapshotComponent {
   message: string = '';
   alertType: string = '';
   saved: boolean = false;
-  
-  throwAlert(message: string, type: string){
+
+  throwAlert(message: string, type: string) {
     this.saved = true;
     this.message = message;
     this.alertType = type;
@@ -75,7 +78,7 @@ export class SnapshotComponent {
   }
 
 
-  onNewDataTable(vehicle: Vehicle):void {
+  onNewDataTable(vehicle: Vehicle): void {
     this.vehicleObtained = vehicle;
 
     /*these properties are for the payload to the api */
@@ -85,27 +88,27 @@ export class SnapshotComponent {
   }
 
 
-saveImages():void{
- 
-  this.apiService.SaveImagesVehicle(this.saveimagePayload, localStorage.getItem('Token')).
-  subscribe({
-    next:(data: any) => {
-      console.log(data)
-      this.throwAlert(data.mensaje, 'success');
-      setTimeout(() => {this.reloadPage()}, 2000);
-    },
-    error:(error: HttpErrorResponse) => {
-      this.throwAlert(error.error.mensaje, 'danger');
-      console.log(this.saveimagePayload);
-      console.log(error)
-    }
-  })
+  saveImages(): void {
 
-  this.saved = false;
-}
+    this.apiService.SaveImagesVehicle(this.saveimagePayload, localStorage.getItem('Token')).
+      subscribe({
+        next: (data: any) => {
+          console.log(data)
+          this.throwAlert(data.mensaje, 'success');
+          setTimeout(() => { this.reloadPage() }, 2000);
+        },
+        error: (error: HttpErrorResponse) => {
+          this.throwAlert(error.error.mensaje, 'danger');
+          console.log(this.saveimagePayload);
+          console.log(error)
+        }
+      })
 
-reloadPage():void {
-  window.location.reload();
+    this.saved = false;
+  }
+
+  reloadPage(): void {
+    window.location.reload();
   }
 
 
