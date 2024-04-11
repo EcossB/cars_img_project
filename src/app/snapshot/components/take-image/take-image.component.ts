@@ -4,6 +4,7 @@ import { WebcamImage } from 'ngx-webcam';
 import { Observable, Subject } from 'rxjs';
 import { imagePreview } from '../../interfaces/previewImage.interface';
 import { CheckGroup } from '../../interfaces/checkgroup.interface';
+import { imgAnexadas } from '../../interfaces/Ianexadas.interface';
 
 
 @Component({
@@ -30,6 +31,12 @@ export class TakeImageComponent {
     carFrontPreview: '',
     carBackPreview: ''
   };
+
+  imgAnexada: imgAnexadas = {
+    img_anexo1: '',
+    img_anexo2: '',
+    img_anexo3: ''
+  }
 
   inputsChecked: CheckGroup ={
     check1: false,
