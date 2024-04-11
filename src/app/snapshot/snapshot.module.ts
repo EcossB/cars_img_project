@@ -18,10 +18,11 @@ import { AuthService } from '../loginmodule/services/auth.service';
 import { AuthGuardService } from '../loginmodule/services/auth-guard.service';
 import { AlertModule } from 'ngx-bootstrap/alert';
 import { NgxUiLoaderModule } from 'ngx-ui-loader';
+import { ImgAnexadasComponent} from './components/imganexadas/imganexadas.component';
 
 
 @NgModule({
-  declarations: [ SnapshotComponent, TakeImageComponent, PreviewImageComponent, CarDataComponent],
+  declarations: [ SnapshotComponent, TakeImageComponent, PreviewImageComponent, CarDataComponent, ImgAnexadasComponent],
   exports:[
     SnapshotComponent
   ],
