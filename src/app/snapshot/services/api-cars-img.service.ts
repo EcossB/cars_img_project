@@ -21,7 +21,7 @@ export class ApiCarsImgService {
 
   /*---- these methods are for retrieve the data of the Endpoint {vehicle} in the Api. ----- */
   /*----- the data that is coming, its for the component car-data. -----*/
-  
+
 
   header_object = new HttpHeaders().set("Authorization", "bearer " + localStorage.getItem('Token'));
 
@@ -36,7 +36,7 @@ export class ApiCarsImgService {
     return this.http.get(`${this.urlApiCarsImg}/Vehicle?user=${tokenUser}`, this.httpOptions);
   }
 
-  getVehicleByChasis(chasis: string): Observable<Object>{
+  getVehicleByChasis(chasis: string): Observable<Object> {
     return this.http.get(`${this.urlApiCarsImg}/Vehicle/${chasis}?user=${this.token}`, this.httpOptions);
   }
 
@@ -44,7 +44,7 @@ export class ApiCarsImgService {
     return this.http.get<chasis[]>(`${this.urlApiCarsImg}/Vehicle/allChasis?user=${this.token}`, this.httpOptions);
   }
 
-  getChasis(chasis: string, tokenUser: string | null): Observable<chasis[]>{
+  getChasis(chasis: string, tokenUser: string | null): Observable<chasis[]> {
     return this.http.get<chasis[]>(`${this.urlApiCarsImg}/Vehicle/single/${chasis}?user=${tokenUser}`, this.httpOptions);
   }
 
@@ -69,18 +69,18 @@ export class ApiCarsImgService {
   }
 
   get5ImagesVehicle(): Observable<Object> {
-    return this.http.get(`${this.urlApiCarsImg}/get5first?user=${this.token}`, this.httpOptions);
+    return this.http.get(`${this.urlApiCarsImg}/get4first?user=${this.token}`, this.httpOptions);
   }
 
   /* ------------------------------------------------------------------ */
   /*The next methods are for login and logout endpoints. */
 
-  LoginUser(form: FormGroup){
-    return this.http.post<{user: LoginResponse}>(`${this.urlApiCarsImg}/Auth`, form.getRawValue());
+  LoginUser(form: FormGroup) {
+    return this.http.post<{ user: LoginResponse }>(`${this.urlApiCarsImg}/Auth`, form.getRawValue());
   }
 
-  LogOutUser(form: any){
-    return this.http.post<{mesage: message}>(`${this.urlApiCarsImg}/Auth/logout`, form);
+  LogOutUser(form: any) {
+    return this.http.post<{ mesage: message }>(`${this.urlApiCarsImg}/Auth/logout`, form);
   }
 
 }

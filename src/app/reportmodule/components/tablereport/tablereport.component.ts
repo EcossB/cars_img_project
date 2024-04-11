@@ -49,7 +49,7 @@ export class TablereportComponent implements OnInit{
     })
   }
 
-  get5Images(): void {
+  get4Images(): void {
     this.apiService.get5ImagesVehicle().subscribe({
       next: (data: any) => {
         this.imgCarDataList = data;
@@ -68,7 +68,7 @@ export class TablereportComponent implements OnInit{
     console.log(token)
     this.page += 1;
 
-    this.apiService.getImagesVehiclePagination(token, this.page, 5 ).subscribe({
+    this.apiService.getImagesVehiclePagination(token, this.page, 4 ).subscribe({
       next: (data: any) => {
         /** TODO: poner un if el cual valide que la data que venga no este vacia */
         console.log(data);
@@ -87,7 +87,7 @@ export class TablereportComponent implements OnInit{
   }
 
   ngOnInit(): void {
-    this.get5Images();
+    this.get4Images();
   }
 
 
