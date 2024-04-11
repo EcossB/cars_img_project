@@ -5,6 +5,8 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import  {jsPDF}  from 'jspdf';
 import html2canvas from 'html2canvas';
+import { Router } from '@angular/router';
+import { BehaviorReportService } from '../../service/behaviorReport.service';
 
 @Component({
   selector: 'report-tablereport',
@@ -15,12 +17,14 @@ export class TablereportComponent implements OnInit{
 
   constructor(
     public apiService: ApiCarsImgService,
-    private modalService: BsModalService){}
+    private modalService: BsModalService,
+    public router: Router,
+    private reportService: BehaviorReportService){}
 
   imgCarDataList: ImgCarData[] = [];
 
   OrderSelected!: ImgCarData;
-
+  page: number = 1 // page for the pagination end
   numOrder: number = 0 ;
 
   modalRef?: BsModalRef;
@@ -29,6 +33,7 @@ export class TablereportComponent implements OnInit{
     this.modalRef = this.modalService.show(template);
     this.OrderSelected = order;
   }
+
 
   getImagesbyNumOrder(num_Order: any){
     this.apiService.getImagesVehicleByNumOrder(num_Order)
@@ -44,8 +49,8 @@ export class TablereportComponent implements OnInit{
     })
   }
 
-  getAllImages(): void {
-    this.apiService.getAllImagesVehicle().subscribe({
+  get5Images(): void {
+    this.apiService.get5ImagesVehicle().subscribe({
       next: (data: any) => {
         this.imgCarDataList = data;
       },
@@ -55,70 +60,34 @@ export class TablereportComponent implements OnInit{
     })
   }
 
+  onScroll():void {
+
+    let token = window.localStorage.getItem('Token');
+    
+
+    console.log(token)
+    this.page += 1;
+
+    this.apiService.getImagesVehiclePagination(token, this.page, 5 ).subscribe({
+      next: (data: any) => {
+        /** TODO: poner un if el cual valide que la data que venga no este vacia */
+        console.log(data);
+        this.imgCarDataList = this.imgCarDataList.concat(data);
+      },
+      error: (error) => {
+        console.log(error)
+      }
+    })
+  }
+
   generatePdf(): void {
-    const elementToPrint: HTMLElement = document.getElementById('pdfContent') as HTMLElement;
-
-    html2canvas(elementToPrint, {scale: 2}).then((canvas) => {
-      const pdf = new jsPDF();
-
-      pdf.addImage(canvas.toDataURL('image/png'), 'PNG', 0,0,211,298);
-
-      pdf.setProperties({
-        title: 'Reporte Imagenes',
-        subject: 'PDF con el reporte de la orden e imagenes',
-        author: 'Auto Vidrios Melien'
-      });
-
-      pdf.setFontSize(14);
-
-      pdf.save('reporte Imagenes.pdf');
-
-    });
-
-    // const timeElapsed = Date.now();
-    // const today = new Date(timeElapsed);
-
-    // const columns = ["Compañia", "Sucursal", "Numero Orden"];
-    // const row = [
-    //   this.OrderSelected.compania,
-    //   this.OrderSelected.sucursal,
-    //   this.OrderSelected.orden_Numero
-    // ];
-    // const tableOptions = {
-    //   startY: 65
-    // }
-
-    // const doc = new jsPDF();
-
-    // doc.addImage('../assets/bluePrintCar/LogoMelien.png',
-    // 'PNG',
-    // 60, //posicion en x
-    // 10, //posicion en y
-    // 100, //ancho
-    // 30 // altura
-    // );
-
-    // doc.setFont('Times');
-    // doc.setFontSize(18);
-    // doc.text('Reporte de Ordenes.', 85, 50);
-
-    // doc.setFontSize(12);
-    // doc.text(`${today.toLocaleDateString()}`,105, 55);
-
-
-    // doc.addImage(this.OrderSelected.img_lateral_derecho,
-    //   'JPEG',
-    //   35 ,
-    //   70 ,
-    //   150,
-    //   150);
-
-    // doc.save('PdfTest.pdf');
-
+    this.modalRef?.hide()
+    this.reportService.setReport(this.OrderSelected);
+    this.router.navigateByUrl('/Preview');
   }
 
   ngOnInit(): void {
-    this.getAllImages();
+    this.get5Images();
   }
 
 

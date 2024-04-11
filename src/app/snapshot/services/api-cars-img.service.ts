@@ -65,6 +65,14 @@ export class ApiCarsImgService {
     return this.http.post(`${this.urlApiCarsImg}/ImgVehicle?user=${tokenUser}`, payload, this.httpOptions);
   }
 
+  getImagesVehiclePagination(tokenUser: string | null, page: number, limit: number): Observable<Object> {
+    return this.http.get<ImgCarData[]>(`${this.urlApiCarsImg}/pagination?user=${tokenUser}&pagina=${page}&limiteRegistro=${limit}`, this.httpOptions);
+  }
+
+  get5ImagesVehicle(): Observable<Object> {
+    return this.http.get(`${this.urlApiCarsImg}/get5first?user=${this.token}`, this.httpOptions);
+  }
+
   /* ------------------------------------------------------------------ */
   /*The next methods are for login and logout endpoints. */
 

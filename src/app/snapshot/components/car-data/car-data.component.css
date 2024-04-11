@@ -1,13 +1,28 @@
-.selectChasis{
+.selectChasis {
     margin-bottom: 1rem;
     width: 100%;
 }
 
-.previewSelectOrder{
+.previewSelectOrder {
     border: 5px gray solid;
+    height: min-content;
     border-radius: 1rem;
 }
 
-.tableHeight{
+.tableHeight {
     height: 8rem;
+}
+
+.tableHeading thead {
+    position: sticky;
+}
+
+.active {
+    background: lightgreen;
+    color: black;
+}
+
+.unactive {
+    background: white;
+    color: black;
 }

@@ -8,19 +8,19 @@
 
 <div  class="containerImagePreview ">
 
-  <div  class="rightPreview stacked">
+  <div *ngIf="carPhotos.carRightPreview" class="rightPreview stacked">
     <img [src]="carPhotos.carRightPreview" class="card_img">
   </div>
 
-  <div  class="frontPreview stacked">
+  <div *ngIf="carPhotos.carFrontPreview" class="frontPreview stacked">
     <img [src]="carPhotos.carFrontPreview" class="card_img">
   </div>
 
-  <div  class="backPreview stacked">
+  <div *ngIf="carPhotos.carBackPreview" class="backPreview stacked">
     <img [src]="carPhotos.carBackPreview" class="card_img">
   </div>
 
-  <div  class="leftPreview stacked">
+  <div *ngIf="carPhotos.carleftPreview" class="leftPreview stacked">
     <img [src]="carPhotos.carleftPreview" class="card_img">
   </div>
 
