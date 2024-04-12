@@ -4,6 +4,7 @@ import { Vehicle } from '../interfaces/vehicle.interface';
 import { ApiCarsImgService } from '../services/api-cars-img.service';
 import { SaveVehiclePayload } from '../interfaces/DataImgPayload.interface';
 import { HttpErrorResponse } from '@angular/common/http';
+import { imgAnexadas } from '../interfaces/Ianexadas.interface';
 
 @Component({
   selector: 'main-page-snapshot',
@@ -25,6 +26,12 @@ export class SnapshotComponent {
     carRightPreview: '',
     carFrontPreview: '',
     carBackPreview: ''
+  }
+
+  imageAnexada: imgAnexadas = {
+    img_anexo1: '',
+    img_anexo2: '',
+    img_anexo3: ''
   }
 
   saveimagePayload: SaveVehiclePayload = {
@@ -75,6 +82,19 @@ export class SnapshotComponent {
     this.saveimagePayload.img_lateral_izquierdo = photo.carleftPreview;
     this.saveimagePayload.img_frontal = photo.carFrontPreview;
     this.saveimagePayload.img_trasero = photo.carBackPreview;
+  }
+
+  onNewPhotoAnexadas(photoAnexada: imgAnexadas): void {
+
+    console.log(photoAnexada);
+    this.imageAnexada.img_anexo1 = photoAnexada.img_anexo1;
+    this.imageAnexada.img_anexo2 = photoAnexada.img_anexo2;
+    this.imageAnexada.img_anexo3 = photoAnexada.img_anexo3;
+
+    this.saveimagePayload.img_anexo1 = photoAnexada.img_anexo1;
+    this.saveimagePayload.img_anexo2 = photoAnexada.img_anexo2;
+    this.saveimagePayload.img_anexo3 = photoAnexada.img_anexo3;
+
   }
 
 
