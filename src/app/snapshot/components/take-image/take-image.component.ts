@@ -14,7 +14,7 @@ import { imgAnexadas } from '../../interfaces/Ianexadas.interface';
 })
 export class TakeImageComponent {
 
-  constructor(private modalService: BsModalService) {}
+  constructor(private modalService: BsModalService) { }
 
   saved: boolean = false;
 
@@ -24,6 +24,10 @@ export class TakeImageComponent {
   carleft: Subject<void> = new Subject();
   carFront: Subject<void> = new Subject();
   carBack: Subject<void> = new Subject();
+
+  imagenCristal1: Subject<void> = new Subject();
+  imagenCristal2: Subject<void> = new Subject();
+  imagenChasis: Subject<void> = new Subject();
 
   imageCarrete: imagePreview = {
     carRightPreview: '',
@@ -38,29 +42,35 @@ export class TakeImageComponent {
     img_anexo3: ''
   }
 
-  inputsChecked: CheckGroup ={
+  inputsChecked: CheckGroup = {
     check1: false,
     check2: false,
     check3: false,
-    check4: false
+    check4: false,
+    check5: false,
+    check6: false,
+    check7: false
   }
 
   @Output()
   public onNewPhoto: EventEmitter<imagePreview> = new EventEmitter;
+
+  @Output()
+  public onNewPhotoAnexada: EventEmitter<imgAnexadas> = new EventEmitter;
 
 
   /** ------ Open modal Boot Strap -------- */
 
   modalRef?: BsModalRef;
 
-  openModal(template: TemplateRef<void>): void{
+  openModal(template: TemplateRef<void>): void {
     this.modalRef = this.modalService.show(template);
   }
 
 
   /** ----  checking camera user permissions. -----*/
 
-  checkPermissions(): void{
+  checkPermissions(): void {
     navigator.mediaDevices.getUserMedia({
       audio: true
     }).then((res) => {
@@ -79,7 +89,7 @@ export class TakeImageComponent {
     return this.carRight.asObservable();
   }
 
-  snapshot(event: WebcamImage): void{
+  snapshot(event: WebcamImage): void {
     this.imageCarrete.carRightPreview = event.imageAsDataUrl;
   }
 
@@ -89,7 +99,7 @@ export class TakeImageComponent {
     this.carRight.next();
     this.onNewPhoto.emit(this.imageCarrete);
     this.inputsChecked.check1 = true;
-    setTimeout(() => {this.saved = false;}, 2000);
+    setTimeout(() => { this.saved = false; }, 2000);
   }
 
   /* --------------------- Trigger, snapshotEvent and capture image for left side of vehicle--------------------------*/
@@ -103,13 +113,13 @@ export class TakeImageComponent {
     this.imageCarrete.carleftPreview = event.imageAsDataUrl;
   }
 
-  captureImageLeft( ): void {
+  captureImageLeft(): void {
 
     this.saved = true;
     this.carleft.next();
     this.onNewPhoto.emit(this.imageCarrete);
     this.inputsChecked.check4 = true;
-    setTimeout(() => {this.saved = false;}, 2000);
+    setTimeout(() => { this.saved = false; }, 2000);
 
 
 
@@ -127,19 +137,19 @@ export class TakeImageComponent {
     this.imageCarrete.carFrontPreview = event.imageAsDataUrl;
   }
 
-  captureImageFront( ): void {
+  captureImageFront(): void {
 
     this.saved = true;
     this.carFront.next();
     this.onNewPhoto.emit(this.imageCarrete);
     this.inputsChecked.check2 = true;
-    setTimeout(() => {this.saved = false;}, 2000);
+    setTimeout(() => { this.saved = false; }, 2000);
 
 
 
   }
 
-    /* ---------------------Trigger, snapshotEvent and capture image for back side of vehicle--------------------------*/
+  /* ---------------------Trigger, snapshotEvent and capture image for back side of vehicle--------------------------*/
 
 
   get $carBack(): Observable<void> {
@@ -150,16 +160,70 @@ export class TakeImageComponent {
     this.imageCarrete.carBackPreview = event.imageAsDataUrl;
   }
 
-  captureImageBack( ): void {
-
+  captureImageBack(): void {
     this.saved = true;
     this.carBack.next();
     this.onNewPhoto.emit(this.imageCarrete);
     this.inputsChecked.check3 = true;
-    setTimeout(() => {this.saved = false;}, 2000);
-
+    setTimeout(() => { this.saved = false; }, 2000);
   }
 
+  /**
+   *  * APLICANDO LOGICA DEL GET OBSERVABLE, EL EVENTO SNAPSHOT PARA EL TRIGGER Y TAMBIE EL METODO PARA CAPTURAR LA IMAGEN Y EMITIRLA AL PADRE.
+   *  * APLICANDOLO PARA LAS IMAGENES ANEXADAS DEL VEHICULO.
+   */
+
+  get $imgcristal1 (): Observable<void> {
+    return this.imagenCristal1.asObservable();
+  }
+
+  snapshotCristal1(event: WebcamImage) {
+    this.imgAnexada.img_anexo1 = event.imageAsDataUrl;
+  }
+
+  captureCristal1(): void {
+    this.saved = true;
+    this.imagenCristal1.next();
+    this.onNewPhotoAnexada.emit(this.imgAnexada);
+    this.inputsChecked.check5 = true;
+    setTimeout(() => { this.saved = false; }, 2000);
+  }
+
+  // ---------------------------------------------------------------------------------------- //
+
+  get $imgcristal2 (): Observable<void> {
+    return this.imagenCristal2.asObservable();
+  }
+
+  snapshotCristal2(event: WebcamImage) {
+    this.imgAnexada.img_anexo2 = event.imageAsDataUrl;
+  }
+
+  captureCristal2(): void {
+    this.saved = true;
+    this.imagenCristal2.next();
+    this.onNewPhotoAnexada.emit(this.imgAnexada);
+    this.inputsChecked.check6 = true;
+    setTimeout(() => { this.saved = false; }, 2000);
+  }
+
+  // ---------------------------------------------------------------------------------------- //
+
+  get $imgchasis (): Observable<void> {
+    return this.imagenChasis.asObservable();
+  }
+
+  snapshotChasis(event: WebcamImage) {
+    this.imgAnexada.img_anexo3 = event.imageAsDataUrl;
+  }
+
+  captureChasis(): void {
+    this.saved = true;
+    this.imagenChasis.next();
+    this.onNewPhotoAnexada.emit(this.imgAnexada);
+    this.inputsChecked.check7 = true;
+    setTimeout(() => { this.saved = false; }, 2000);
+  }
 
 
 
