@@ -6,15 +6,15 @@
   y tambien tiene un metodo llamado openModal, el cual le pasamos unos ngtemplates que contienen
   el html y bootstrap de los Modals. De esta manera cada parte se dependiendo del lateral que se
   haga click.
-  
-  Tambien tenemos unos inputs o checkbox los cuales se marcan cada vez que sed tira una foto. 
+
+  Tambien tenemos unos inputs o checkbox los cuales se marcan cada vez que sed tira una foto.
 
  -->
 
  <div class="imgContainer" (click)="checkPermissions()">
 
   <div class="blueprintCaRight twoColumns" (click)="openModal(carRightT)">
-    <img src="assets\bluePrintCar\RightPartCamera.png" class="car_img overlay" > 
+    <img src="assets\bluePrintCar\RightPartCamera.png" class="car_img overlay" >
   </div>
 
   <div class="blueprintCarBack" (click)="openModal(carBackT)">
@@ -31,12 +31,22 @@
 
 </div>
 
+<div class="d-flex justify-content-around align-content-center my-1">
+    <button class="btn btn-primary mx-1" (click)="openModal(imgCristal1)">Capturar Ventana 1🪟</button>
+    <button class="btn btn-primary mx-1" (click)="openModal(imgCristal2)">Capturar Ventana 2🪟</button>
+    <button class="btn btn-primary mx-1" (click)="openModal(imgChasis)">Capturar Chasis 🔢</button>
+</div>
+
 <!-- ------------ adding checkbuttons, when an image is capture these will be [checked] -->
 <div class="checkImages">
   <input type="checkbox" class="check"  disabled="disabled" [checked]=inputsChecked.check1>
   <input type="checkbox" class="check"  disabled="disabled" [checked]=inputsChecked.check2>
   <input type="checkbox" class="check"  disabled="disabled" [checked]=inputsChecked.check3>
   <input type="checkbox" class="check"  disabled="disabled" [checked]=inputsChecked.check4>
+  <input type="checkbox" class="check"  disabled="disabled" [checked]=inputsChecked.check5>
+  <input type="checkbox" class="check"  disabled="disabled" [checked]=inputsChecked.check6>
+  <input type="checkbox" class="check"  disabled="disabled" [checked]=inputsChecked.check7>
+
 </div>
 
 
@@ -62,7 +72,7 @@
   <div class="modal-footer d-flex justify-content-center my-1">
     <button class="btn btn-primary btn-lg" (click)="captureImageRight()"> capture image </button>
   </div>
-  
+
   <div *ngIf="saved" class="d-flex justify-content-center">
     <alert type="success" [dismissOnTimeout]="2000" >Imagen Capturada</alert>
   </div>
@@ -142,7 +152,7 @@
     [imageQuality]="1"></webcam>
   </div>
   <div class="modal-footer d-flex justify-content-center my-1">
-    <button class="btn btn-primary" (click)="captureImageBack()"> capture image </button> 
+    <button class="btn btn-primary" (click)="captureImageBack()"> capture image </button>
   </div>
 
   <div *ngIf="saved" class="d-flex justify-content-center my-1">
@@ -153,7 +163,7 @@
 
 <ng-template #imgCristal1>
   <div class="modal-header">
-    <h4 class="modal-title pull-left">Lado Trasero del Vehiculo</h4>
+    <h4 class="modal-title pull-left">Cristal del vehiculo</h4>
     <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="modalRef?.hide()">
       <span aria-hidden="true" class="visually-hidden">&times;</span>
     </button>
@@ -163,12 +173,12 @@
     <webcam
     [width]="450"
     [height]="450"
-    [trigger]="$carBack"
-    (imageCapture)="snapshot3($event)"
+    [trigger]="$imgcristal1"
+    (imageCapture)="snapshotCristal1($event)"
     [imageQuality]="1"></webcam>
   </div>
   <div class="modal-footer d-flex justify-content-center my-1">
-    <button class="btn btn-primary" (click)="captureImageBack()"> capture image </button> 
+    <button class="btn btn-primary" (click)="captureCristal1()"> capture image </button>
   </div>
 
   <div *ngIf="saved" class="d-flex justify-content-center my-1">
@@ -178,3 +188,54 @@
 </ng-template>
 
 
+<ng-template #imgCristal2>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Cristal del vehiculo</h4>
+    <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="modalRef?.hide()">
+      <span aria-hidden="true" class="visually-hidden">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <!-- todo: cam image shown here in the body -->
+    <webcam
+    [width]="450"
+    [height]="450"
+    [trigger]="$imgcristal2"
+    (imageCapture)="snapshotCristal2($event)"
+    [imageQuality]="1"></webcam>
+  </div>
+  <div class="modal-footer d-flex justify-content-center my-1">
+    <button class="btn btn-primary" (click)="captureCristal2()"> capture image </button>
+  </div>
+
+  <div *ngIf="saved" class="d-flex justify-content-center my-1">
+    <alert type="success" [dismissOnTimeout]="2000" >Imagen Capturada</alert>
+  </div>
+
+</ng-template>
+
+<ng-template #imgChasis>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Chasis del vehiculo</h4>
+    <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="modalRef?.hide()">
+      <span aria-hidden="true" class="visually-hidden">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <!-- todo: cam image shown here in the body -->
+    <webcam
+    [width]="450"
+    [height]="450"
+    [trigger]="$imgchasis"
+    (imageCapture)="snapshotChasis($event)"
+    [imageQuality]="1"></webcam>
+  </div>
+  <div class="modal-footer d-flex justify-content-center my-1">
+    <button class="btn btn-primary" (click)="captureChasis()"> capture image </button>
+  </div>
+
+  <div *ngIf="saved" class="d-flex justify-content-center my-1">
+    <alert type="success" [dismissOnTimeout]="2000" >Imagen Capturada</alert>
+  </div>
+
+</ng-template>
