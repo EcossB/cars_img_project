@@ -7,7 +7,7 @@
   </div>
 
   <div class="takeImageContainer">
-    <take-image (onNewPhoto)="onNewPhoto($event)"></take-image>
+    <take-image (onNewPhoto)="onNewPhoto($event)" (onNewPhotoAnexada)="onNewPhotoAnexadas($event)"></take-image>
   </div>
 </section>
 
@@ -15,6 +15,12 @@
   <h5 class="h5 mx-5">Imagenes Del Vehiculo</h5>
   <hr class="mx-5">
   <preview-image [carPhotos]="imagePrevieCars"></preview-image>
+</div>
+
+<div class="previewContainer ">
+  <h5 class="h5 mx-5 ">Imagenes Anexadas</h5>
+  <hr class="mx-5">
+  <imganexadas [imgAnexadasPreview]="imageAnexada"></imganexadas>
 </div>
 
 <div *ngIf="saved" class="saveContainer">
