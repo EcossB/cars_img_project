@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { ImgVehicle } from '../interfaces/Imgvehicle.interface';
@@ -11,9 +11,10 @@ import { ImgCarData } from '../../reportmodule/interface/imgCarData.interface';
 @Injectable({
   providedIn: 'root'
 })
-export class ApiCarsImgService {
+export class ApiCarsImgService implements OnInit {
 
   constructor(public http: HttpClient) { }
+
 
   private urlApiCarsImg: string = 'https://localhost:7016/api';
   //private urlApiCarsImg: string = 'http://172.24.3.124:3200/api';
@@ -23,14 +24,18 @@ export class ApiCarsImgService {
   /*---- these methods are for retrieve the data of the Endpoint {vehicle} in the Api. ----- */
   /*----- the data that is coming, its for the component car-data. -----*/
 
+  token: string | null = localStorage.getItem('Token');
 
-  header_object = new HttpHeaders().set("Authorization", "bearer " + localStorage.getItem('Token'));
+  ngOnInit(): void {
+    this.token =  localStorage.getItem('Token');
+  }
+
+  header_object = new HttpHeaders().set("Authorization", "bearer " + this.token);
 
   httpOptions = {
     headers: this.header_object
   };
 
-  token: string | null = localStorage.getItem('Token');
 
 
   getAllVehiclesData(tokenUser: string | null): Observable<Object> {
