@@ -7,6 +7,7 @@ import  {jsPDF}  from 'jspdf';
 import html2canvas from 'html2canvas';
 import { Router } from '@angular/router';
 import { BehaviorReportService } from '../../service/behaviorReport.service';
+import { NgxUiLoaderService } from 'ngx-ui-loader';
 
 @Component({
   selector: 'report-tablereport',
@@ -19,7 +20,8 @@ export class TablereportComponent implements OnInit{
     public apiService: ApiCarsImgService,
     private modalService: BsModalService,
     public router: Router,
-    private reportService: BehaviorReportService){}
+    private reportService: BehaviorReportService,
+    private ngxLoaderService :NgxUiLoaderService ){}
 
   imgCarDataList: ImgCarData[] = [];
 
@@ -63,7 +65,7 @@ export class TablereportComponent implements OnInit{
   onScroll():void {
 
     let token = window.localStorage.getItem('Token');
-    
+
 
     console.log(token)
     this.page += 1;
@@ -71,8 +73,13 @@ export class TablereportComponent implements OnInit{
     this.apiService.getImagesVehiclePagination(token, this.page, 4 ).subscribe({
       next: (data: any) => {
         /** TODO: poner un if el cual valide que la data que venga no este vacia */
-        console.log(data);
-        this.imgCarDataList = this.imgCarDataList.concat(data);
+        if(data.length != 0){
+          console.log(data);
+          this.imgCarDataList = this.imgCarDataList.concat(data);
+        } else {
+          this.ngxLoaderService.stop();
+        }
+
       },
       error: (error) => {
         console.log(error)
