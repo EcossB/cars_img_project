@@ -30,8 +30,8 @@ import { InfiniteScrollModule } from 'ngx-infinite-scroll';
     ModalModule.forRoot(),
     CarouselModule.forRoot(),
     NgxUiLoaderModule,
-    InfiniteScrollModule
-    
+    InfiniteScrollModule,
+    NgxUiLoaderModule
   ],
   exports: [MainReportComponent, TablereportComponent],
   providers:[ApiCarsImgService, AuthService, AuthGuardService, BehaviorReportService,
