@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output, TemplateRef } from '@angular/core';
+import { AfterViewInit, Component, EventEmitter, OnInit, Output, TemplateRef } from '@angular/core';
 import { ApiCarsImgService } from '../../services/api-cars-img.service';
 import { chasis } from '../../interfaces/chasis.interface';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
@@ -13,24 +13,26 @@ import { OrderVehicles } from '../../interfaces/Order.interface';
   templateUrl: './car-data.component.html',
   styleUrl: './car-data.component.css'
 })
-export class CarDataComponent implements OnInit {
+export class CarDataComponent implements OnInit{
 
-  /* 
-  TODO: Inyeccion de servicios y dependencias a traves de composicion. 
+  /*
+  TODO: Inyeccion de servicios y dependencias a traves de composicion.
   * public apiService: ApiCarsImgService, // Para interactuar con la API.
-  * modalservice es para poder abrir modales, ahora mismo no se esta utilizando. 
+  * modalservice es para poder abrir modales, ahora mismo no se esta utilizando.
    */
   constructor(
     public apiService: ApiCarsImgService,
     private modalService: BsModalService) { }
 
-  /* 
-    Array que contendra las ordenes que estan pendientes para tirar fotos.  
+  /*
+    Array que contendra las ordenes que estan pendientes para tirar fotos.
   */
   vehicleData: Vehicle[] = [];
 
+  token: string | null = localStorage.getItem('Token');
+
   /*
-   * propiedad la cual utilizamos para cuando seleccionamos una fila en la tabla 
+   * propiedad la cual utilizamos para cuando seleccionamos una fila en la tabla
    * Esto lo que hace es que el contenedor que muestra la fila seleccionada esta relacionada
    * con esta propiedad.
    */
@@ -53,10 +55,10 @@ export class CarDataComponent implements OnInit {
   * Este metodo lo que hace es utilizar el servicio apiService, y suscribo el metodo getAllvehicleData
   * esto lo que hace es tomar todos los datos de orden del vehiculo y adentrarlo dentro del array de
   * datos.
-  
+
   */
   getAllVehicleData(): void {
-    this.apiService.getAllVehiclesData(localStorage.getItem('Token'))
+    this.apiService.getAllVehiclesData(this.token)
       .subscribe({
         next: (data: any) => {
           this.vehicleData = data;
@@ -69,8 +71,8 @@ export class CarDataComponent implements OnInit {
   }
 
   /**
-   * 
-   * @param event 
+   *
+   * @param event
    * * Este metodo lo que sirve es para el output del hijo al padre.
    */
   onSelected(event: any) {
@@ -79,10 +81,10 @@ export class CarDataComponent implements OnInit {
     console.log(this.vehicleObtained);
   }
 
-  /** 
-   * 
+  /**
+   *
    * @param c Es la orden seleccionada en la filas de las tablas.
-   * 
+   *
     ** Igualamos las propiedades del parametro con las propiedades de vehicleObtained
 
   * *Agregue una validacion para que siempre que presionen una fila esta se resalte de verde
@@ -90,9 +92,9 @@ export class CarDataComponent implements OnInit {
     para el color verde, siempre y cuando tenga el background por ''.
    */
   selectRow(c: Vehicle, $event: any) {
-    
+
     console.log($event.target.parentElement.id);
-    
+
     if($event.target.parentElement.style.background === ''){
 
       $event.target.parentElement.style.background = 'lightgreen';
@@ -101,7 +103,7 @@ export class CarDataComponent implements OnInit {
 
       $event.target.parentElement.style.background = '';
 
-    } 
+    }
 
     this.vehicleObtained.compania = c.compania;
     this.vehicleObtained.sucursal = c.sucursal;
@@ -118,8 +120,10 @@ export class CarDataComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.getAllVehicleData();
+    setTimeout(() => { this.getAllVehicleData() }, 2000);
   }
+
+
 
 }
 
@@ -157,8 +161,8 @@ vehicleObtained: Vehicle = {
 
 search(chasis: string):void {
 
-   Im doing this because when we erase the input it throws a 400, so if the user erase 
-   the whole thing on the input it wont throw a 400. 
+   Im doing this because when we erase the input it throws a 400, so if the user erase
+   the whole thing on the input it wont throw a 400.
 
   if(chasis.length > 0){
     this.searchTerms.next(chasis);
@@ -171,7 +175,7 @@ SearchChasis():void {
     tap((_) => (this.loading = true)),
     debounceTime(300),
     distinctUntilChanged(),
-    switchMap((chasis: string) => 
+    switchMap((chasis: string) =>
     this.apiService.getChasis(chasis, localStorage.getItem('Token'))),
     tap((_) => (this.loading = false))
   );
