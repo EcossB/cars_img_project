@@ -28,10 +28,14 @@ export class PdfstructureComponent implements OnInit{
   }
 
   generatePdf():void{
-    const elementToPrint: HTMLElement = document.getElementById('pdfContent2') as HTMLElement;
+    const elementToPrint: HTMLElement = document.getElementById('table') as HTMLElement;
 
     const timeElapsed = Date.now();
     const today = new Date(timeElapsed);
+
+
+    html2canvas(elementToPrint, {scale: 2}).then((canvas) => {
+
 
     const pdf = new jsPDF({
       orientation: 'p',
@@ -53,9 +57,20 @@ export class PdfstructureComponent implements OnInit{
     pdf.text(today.toLocaleDateString(), 95, 44);
 
     /** table with the principal data. */
+    pdf.addImage(canvas.toDataURL('image/JPEG'), 'JPEG', 0, 50, 280, 25);
 
-    
+    /** Images */
 
-    pdf.save('reporte Imagenes.pdf');
+    pdf.text('Imagen Lateral Derecho', 5, 80);
+    pdf.addImage(this.actualReport.img_lateral_derecho, 5, 82, 100, 100);
+
+    pdf.text('Imagen Lateral izquierdo', 5, 200);
+
+
+      pdf.save('reporte Imagenes.pdf');
+    });
+
+
+
   }
 }
