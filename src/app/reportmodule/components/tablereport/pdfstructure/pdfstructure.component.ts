@@ -29,29 +29,33 @@ export class PdfstructureComponent implements OnInit{
 
   generatePdf():void{
     const elementToPrint: HTMLElement = document.getElementById('pdfContent2') as HTMLElement;
-    
+
     const timeElapsed = Date.now();
     const today = new Date(timeElapsed);
 
-    html2canvas(elementToPrint, {scale: 1}).then((canvas) => {
-      const pdf = new jsPDF({
-        orientation: 'p',
-        format: 'a0'
-      });
-
-      
-      pdf.addImage(canvas.toDataURL('image/png'), 'PNG', 110,5,600,1200);
-
-      pdf.setProperties({
-        title: 'Reporte Imagenes',
-        subject: 'PDF con el reporte de la orden e imagenes',
-        author: 'Auto Vidrios Melien'
-      });
-
-      pdf.setFontSize(14);
-
-      pdf.save('reporte Imagenes.pdf');
-
+    const pdf = new jsPDF({
+      orientation: 'p',
+      format: 'a4'
     });
+
+
+    pdf.setProperties({
+      title: 'Reporte Imagenes',
+      subject: 'PDF con el reporte de la orden e imagenes',
+      author: 'Auto Vidrios Melien'
+    });
+
+    pdf.addImage(`assets\\bluePrintCar\\LogoMelien.png`, 'PNG', 70, 5, 75, 25);
+    pdf.setFontSize(16);
+    pdf.text('Reporte detalles de imagenes de vehiculos', 53, 37);
+
+    /** fecha */
+    pdf.text(today.toLocaleDateString(), 95, 44);
+
+    /** table with the principal data. */
+
+    
+
+    pdf.save('reporte Imagenes.pdf');
   }
 }
