@@ -51,7 +51,8 @@ export class PdfstructureComponent implements OnInit{
 
     pdf.addImage(`assets\\bluePrintCar\\LogoMelien.png`, 'PNG', 70, 5, 75, 25);
     pdf.setFontSize(16);
-    pdf.text('Reporte detalles de imagenes de vehiculos', 53, 37);
+    pdf.setFont('times', 'italic');
+    pdf.text('Reporte detalles de imagenes de vehiculos', 56, 37);
 
     /** fecha */
     pdf.text(today.toLocaleDateString(), 95, 44);
@@ -62,12 +63,26 @@ export class PdfstructureComponent implements OnInit{
     /** Images */
 
     pdf.text('Imagen Lateral Derecho', 5, 80);
-    pdf.addImage(this.actualReport.img_lateral_derecho, 5, 82, 100, 100);
+    pdf.addImage(this.actualReport.img_lateral_derecho, 5, 82, 95, 95);
 
-    pdf.text('Imagen Lateral izquierdo', 5, 200);
+    pdf.text('Imagen Lateral izquierdo', 110, 80);
+    pdf.addImage(this.actualReport.img_lateral_izquierdo, 110, 82, 95, 95);
 
+    pdf.text('Imagen Frontal', 5, 187);
+    pdf.addImage(this.actualReport.img_frontal, 5 , 190, 95, 95);
 
-      pdf.save('reporte Imagenes.pdf');
+    pdf.text('Imagen Trasera', 110, 187);
+    pdf.addImage(this.actualReport.img_trasero, 110 , 190, 95, 95);
+
+    /** Imagenes Anexadas. */
+
+    pdf.addPage();
+    pdf.text("Imagenes anexadas del Vehiculo.", 70, 10);
+
+    pdf.addImage(this.actualReport.img_anexo1, 5, 15, 95, 95 );
+    pdf.addImage(this.actualReport.img_anexo2, 110, 15, 95, 95);
+    pdf.addImage(this.actualReport.img_anexo3, 5, 115, 95, 95);
+    pdf.save('reporte Imagenes.pdf');
     });
 
 
